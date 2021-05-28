@@ -1,113 +1,241 @@
 import 'package:flutter/material.dart';
+import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/announcement/announcement.dart';
+import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/community/community.dart';
+import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/chat/rooms.dart';
+import 'package:synergy_flutter/pages/home/home.dart';
+import 'package:synergy_flutter/pages/profile/profile.dart';
+
 
 void main() {
   runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
+
+  int _currentIndex = 0;
+  final List<Widget> _children = [Home(),Chat(), Announcement(),Community(), Profile()];
+
+  void _onTap(int index) {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      _currentIndex = index;
     });
+  }
+
+
+
+  @override
+  void initState() {
+
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(
+            'Synergy',
+            style: TextStyle(color: Colors.black),
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {},
+            color: Colors.black,
+          ),
+          centerTitle: true,
+          backgroundColor: const Color(0xFFFFFFFF),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        body: _children[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            onTap: _onTap,
+            currentIndex: _currentIndex,
+            items: [
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                title: Text('상영 예정'),
+              ),
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.chat_bubble),
+                title: Text('종료 예정'),
+              ),
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.calendar_today_rounded),
+                title: Text('랭킹'),
+              ),
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.list_alt_outlined),
+                title: Text('내 목록'),
+              ),
+              new BottomNavigationBarItem(
+                icon: Icon(Icons.assignment_ind_outlined),
+                title: Text('내 목록'),
+              ),
+            ])
+
+
+        );
   }
+
+
 }
+
+
+
+
+
+//todo: aaa
+
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter/material.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+//
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//
+//   runApp(MyApp());
+// }
+//
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+//
+// class _MyAppState extends State<MyApp> {
+//   FirebaseFirestore firestore = FirebaseFirestore.instance;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     CollectionReference users = FirebaseFirestore.instance.collection('users');
+//     return MaterialApp(
+//       home: Scaffold(
+//         appBar: AppBar(
+//           title: Text("hello world"),
+//         ),
+//         body: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           crossAxisAlignment: CrossAxisAlignment.stretch,
+//           children: <Widget>[
+//             RaisedButton(
+//
+//               child:
+//                   Text("create button", style: TextStyle(color: Colors.white)),
+//               onPressed: () {
+//                 addData(users);
+//               },
+//               color: Colors.black,
+//               //클릭시 데이터를 추가해준다.
+//             ),
+//             FlatButton(
+//               color: Colors.blue,
+//               child: Text("read button", style: TextStyle(color: Colors.white)),
+//               onPressed: () {
+//                GetUserName();
+//                // var result =
+//                // Text(result.toString(), style: TextStyle(color: Colors.white));
+//                 //클릭시 데이터를 읽어준다
+//               },
+//             ),
+//             FlatButton(
+//               color: Colors.blue,
+//               child:
+//                   Text("update button", style: TextStyle(color: Colors.white)),
+//               onPressed: () {
+//                 //클릭시 데이터를 갱신해준다.
+//               },
+//             ),
+//             FlatButton(
+//               color: Colors.blue,
+//               child:
+//                   Text("delete button", style: TextStyle(color: Colors.white)),
+//               onPressed: () {
+//                 //클릭시 데이터를 삭제해 준다.
+//               },
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+//
+//   Future<void> addData(CollectionReference users) {
+//     // Call the user's CollectionReference to add a new user
+//     return users
+//         .add({
+//           'full_name': "fullName", // John Doe
+//           'company': "company", // Stokes and Sons
+//           'age': "age" // 42
+//         })
+//         .then((value) => print("User Added"))
+//         .catchError((error) => print("Failed to add user: $error"));
+//   }
+//
+//   Future<void> readData(CollectionReference users) {
+//     // Call the user's CollectionReference to add a new user
+//     return users
+//         .add({
+//       'full_name': "fullName", // John Doe
+//       'company': "company", // Stokes and Sons
+//       'age': "age" // 42
+//     })
+//         .then((value) => print("User Added"))
+//         .catchError((error) => print("Failed to add user: $error"));
+//   }
+// }
+// class GetUserName extends StatelessWidget {
+//   final String documentId ;
+//
+//   GetUserName({this.documentId = "F1tLGBIHjk4SQrIoL1KM"});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     CollectionReference users = FirebaseFirestore.instance.collection('users');
+//
+//     return FutureBuilder<DocumentSnapshot>(
+//       future: users.doc(documentId).get(),
+//       builder:
+//           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+//
+//         if (snapshot.hasError) {
+//           return Text("Something went wrong");
+//         }
+//
+//         if (snapshot.hasData && !snapshot.data.exists) {
+//           return Text("Document does not exist");
+//         }
+//
+//         if (snapshot.connectionState == ConnectionState.done) {
+//           Map<String, dynamic> data = snapshot.data.data();
+//           print("Full Name: ${data['full_name']} ${data['age']}");
+//           return Text("Full Name: ${data['full_name']} ${data['age']}");
+//
+//
+//         }
+//
+//         return Text("loading");
+//       },
+//     );
+//   }
+// }

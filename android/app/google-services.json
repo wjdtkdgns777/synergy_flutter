@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1007012821301",
+    "project_id": "synergy-5e23f",
+    "storage_bucket": "synergy-5e23f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007012821301:android:ae1b1762b643feadd2f47c",
+        "android_client_info": {
+          "package_name": "com.example.synergy_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007012821301-g752r8a64dfgvpk4m8q58rac24g3o2rh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0JEWZ5pded3q1mWhwxnFP7H3t5gxjx7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007012821301-g752r8a64dfgvpk4m8q58rac24g3o2rh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
