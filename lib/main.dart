@@ -1,15 +1,21 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/announcement/announcement.dart';
-import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/community/community.dart';
-import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/chat/rooms.dart';
+import 'package:image_cropper/image_cropper.dart';
+
 import 'package:synergy_flutter/pages/home/home.dart';
 import 'package:synergy_flutter/pages/profile/profile.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+
+import 'pages/announcement/announcement.dart';
+import 'pages/chat/rooms.dart';
+import 'pages/community/community.dart';
 
 
 void main() {
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -74,23 +80,23 @@ class _MyHomePageState extends State<MyHomePage> {
             items: [
               new BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                title: Text('상영 예정'),
+                title: Text('홈'),
               ),
               new BottomNavigationBarItem(
                 icon: Icon(Icons.chat_bubble),
-                title: Text('종료 예정'),
+                title: Text('채팅'),
               ),
               new BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_today_rounded),
-                title: Text('랭킹'),
+                title: Text('채용공고'),
               ),
               new BottomNavigationBarItem(
                 icon: Icon(Icons.list_alt_outlined),
-                title: Text('내 목록'),
+                title: Text('커뮤니티'),
               ),
               new BottomNavigationBarItem(
                 icon: Icon(Icons.assignment_ind_outlined),
-                title: Text('내 목록'),
+                title: Text('프로필'),
               ),
             ])
 
