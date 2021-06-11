@@ -1,18 +1,31 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:synergy_flutter/pages/announcement/announcement.dart';
 import 'package:synergy_flutter/pages/chat/rooms.dart';
 import 'package:synergy_flutter/pages/community/community.dart';
 import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/announcement/announcement.dart';
 import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/community/community.dart';
 import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/chat/rooms.dart';
+=======
+import 'package:image_cropper/image_cropper.dart';
+
+>>>>>>> master
 import 'package:synergy_flutter/pages/home/home.dart';
 import 'package:synergy_flutter/pages/profile/profile.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+
+import 'pages/announcement/announcement.dart';
+import 'pages/chat/rooms.dart';
+import 'pages/community/community.dart';
 
 
 void main() {
   runApp(MyApp());
 }
-
+//test
 
 class MyApp extends StatelessWidget {
   @override
@@ -27,6 +40,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+//test
 
 class MyHomePage extends StatefulWidget {
   @override
