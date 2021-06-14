@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+
 
 import 'app/pages/announcement/announcement.dart';
 import 'app/pages/chat/rooms.dart';
@@ -7,10 +11,11 @@ import 'app/pages/home/home.dart';
 import 'app/pages/profile/profile.dart';
 
 
+
+
 void main() {
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   @override
@@ -75,23 +80,23 @@ class _MyHomePageState extends State<MyHomePage> {
             items: [
               new BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                title: Text('상영 예정'),
+                title: Text('홈'),
               ),
               new BottomNavigationBarItem(
                 icon: Icon(Icons.chat_bubble),
-                title: Text('종료 예정'),
+                title: Text('채팅'),
               ),
               new BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_today_rounded),
-                title: Text('랭킹'),
+                title: Text('채용공고'),
               ),
               new BottomNavigationBarItem(
                 icon: Icon(Icons.list_alt_outlined),
-                title: Text('내 목록'),
+                title: Text('커뮤니티'),
               ),
               new BottomNavigationBarItem(
                 icon: Icon(Icons.assignment_ind_outlined),
-                title: Text('내 목록'),
+                title: Text('프로필'),
               ),
             ])
 
