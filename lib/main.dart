@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/announcement/announcement.dart';
-import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/community/community.dart';
-import 'file:///C:/Users/AND/AndroidStudioProjects/synergy_flutter/lib/pages/chat/rooms.dart';
-import 'package:synergy_flutter/pages/home/home.dart';
-import 'package:synergy_flutter/pages/profile/profile.dart';
+
+import 'app/pages/announcement/announcement.dart';
+import 'app/pages/chat/rooms.dart';
+import 'app/pages/community/community.dart';
+import 'app/pages/home/home.dart';
+import 'app/pages/profile/profile.dart';
 
 
 void main() {

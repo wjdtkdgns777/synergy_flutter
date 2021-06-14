@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:synergy_flutter/components/movieTile.dart';
+import 'package:synergy_flutter/app/components/movieTile.dart';
 
-class Home extends StatefulWidget {
+
+
+class Announcement extends StatefulWidget {
   @override
-  _UpComingState createState() => _UpComingState();
+  _NearEndState createState() => _NearEndState();
 }
 
-class _UpComingState extends State<Home> {
+class _NearEndState extends State<Announcement> {
   @override
   Widget build(BuildContext context) {
     // It will provie us total height  and width of our screen
@@ -39,25 +41,25 @@ class _UpComingState extends State<Home> {
             child: Row(children: [
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
@@ -85,25 +87,25 @@ class _UpComingState extends State<Home> {
             child: Row(children: [
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
@@ -131,25 +133,25 @@ class _UpComingState extends State<Home> {
             child: Row(children: [
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
               MovieTile(
                 image:
-                    'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
+                'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
                 title: "불가사리7",
                 date: "21.04.23",
               ),
