@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 
 import 'app/pages/announcement/announcement.dart';
-import 'app/pages/chat/rooms.dart';
+
 import 'app/pages/community/community.dart';
 import 'app/pages/home/home.dart';
 import 'app/pages/profile/profile.dart';
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   int _currentIndex = 0;
-  final List<Widget> _children = [Home(),Chat(), Announcement(),Community(), Profile()];
+  final List<Widget> _children = [Home(), Announcement(),Community(), Profile()];
 
   void _onTap(int index) {
     setState(() {
@@ -81,10 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
               new BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 title: Text('홈'),
-              ),
-              new BottomNavigationBarItem(
-                icon: Icon(Icons.chat_bubble),
-                title: Text('채팅'),
               ),
               new BottomNavigationBarItem(
                 icon: Icon(Icons.calendar_today_rounded),
