@@ -1,19 +1,21 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 
 import 'app/pages/announcement/announcement.dart';
 
-import 'app/pages/community/community.dart';
+import 'app/pages/community/community_view.dart';
 import 'app/pages/home/home.dart';
 import 'app/pages/profile/profile.dart';
 
 
 
 
-void main() {
+Future<void> main() async {
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
