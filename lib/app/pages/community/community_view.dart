@@ -1,20 +1,22 @@
 // import 'package:flutter/cupertino.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:data_connection_checker/data_connection_checker.dart';
+//
 // import 'package:flutter/material.dart';
 // import 'package:flutter/cupertino.dart';
-// import 'package:social_media_app/chats/recent_chats.dart';
-// import 'package:social_media_app/components/stream_builder_wrapper.dart';
-// import 'package:social_media_app/models/post.dart';
-// import 'package:social_media_app/utils/firebase.dart';
-// import 'package:social_media_app/widgets/userpost.dart';
+// import 'package:internet_connection_checker/internet_connection_checker.dart';
+// import 'package:synergy_flutter/app/components/stream_builder_wrapper.dart';
+// import 'package:synergy_flutter/data/utils/firebase.dart';
+// import 'package:synergy_flutter/domain/entities/post.dart';
 //
 // class Community extends StatefulWidget {
 //   @override
-//   _RankingState createState() => _RankingState();
+//   _CommunityState createState() => _CommunityState();
 // }
 //
-// class _RankingState extends State<Community> {
+// class _CommunityState extends State<Community> {
+//
+//   final  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+//
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -22,21 +24,21 @@
 //       appBar: AppBar(
 //         automaticallyImplyLeading: false,
 //         title: Text(
-//           'Wooble',
+//           'Community',
 //           style: TextStyle(fontWeight: FontWeight.w900),
 //         ),
 //         centerTitle: false,
-//         actions: [
-//           IconButton(
-//             icon: Icon(CupertinoIcons.chat_bubble_2_fill,
-//                 size: 30.0, color: Theme.of(context).accentColor),
-//             onPressed: () {
-//               Navigator.push(
-//                   context, CupertinoPageRoute(builder: (_) => Chats()));
-//             },
-//           ),
-//           SizedBox(width: 20.0),
-//         ],
+//         // actions: [
+//         //   IconButton(
+//         //     icon: Icon(CupertinoIcons.chat_bubble_2_fill,
+//         //         size: 30.0, color: Theme.of(context).accentColor),
+//         //     onPressed: () {
+//         //       Navigator.push(
+//         //           context, CupertinoPageRoute(builder: (_) => Chats()));
+//         //     },
+//         //   ),
+//         //   SizedBox(width: 20.0),
+//         // ],
 //       ),
 //       body: ListView(
 //         shrinkWrap: true,
@@ -60,16 +62,9 @@
 //       ),
 //     );
 //   }
-// }
-//
-//
-// class Timeline extends StatelessWidget {
-//
-//   final  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-//
 //
 //   internetChecker() async {
-//     bool result = await DataConnectionChecker().hasConnection;
+//     bool result = await InternetConnectionChecker().hasConnection;
 //     if (result == false) {
 //       showInSnackBar('No Internet Connecton');
 //     }
@@ -80,3 +75,5 @@
 //     scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(value)));
 //   }
 // }
+//
+//
