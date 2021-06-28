@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:synergy_flutter/app/components/bezierContainer.dart';
 import 'package:synergy_flutter/app/pages/login/login_view.dart';
 
@@ -121,7 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
       "Synergy",
       style: TextStyle(
         color: Colors.green,
-        fontSize: ScreenUtil().setSp(16),
+        fontSize: 16,
       ),
     );
   }

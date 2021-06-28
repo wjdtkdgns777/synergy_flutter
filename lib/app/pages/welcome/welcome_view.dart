@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:synergy_flutter/app/pages/login/login_view.dart';
-import 'package:synergy_flutter/app/pages/sign_up/signup_view.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:synergy_flutter/app/pages/welcome/welcome_controller.dart';
 
 
@@ -49,11 +47,11 @@ class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
               SizedBox(
                 height: 80,
               ),
-              _submitButton(),
+              _submitButton,
               SizedBox(
                 height: 20,
               ),
-              _signUpButton(),
+              _signUpButton,
               SizedBox(
                 height: 20,
               ),
@@ -65,11 +63,11 @@ class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
     );
 
 
-  Widget _submitButton() {
+  Widget get _submitButton=>ControlledWidgetBuilder<WelcomeController>(builder: (context, controller)  {
     return InkWell(
       onTap: () {
-        Navigator.push(
-              context, MaterialPageRoute(builder: (context) => LoginPage()));
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+        controller.onClickLogin();
       },
       child: Container(
         width: MediaQuery
@@ -94,19 +92,15 @@ class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
         ),
       ),
     );
-  }
+  });
 
-  Widget _signUpButton() {
+  Widget get _signUpButton => ControlledWidgetBuilder<WelcomeController>(builder: (context, controller)  {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SignUpPage()));
+        controller.onClickSignUp();
       },
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        width: double.infinity,
         padding: EdgeInsets.symmetric(vertical: 13),
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -119,7 +113,7 @@ class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
         ),
       ),
     );
-  }
+  });
 
   Widget _label() {
     return Container(
@@ -155,26 +149,12 @@ class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
       "Synergy",
       style: TextStyle(
         color: Colors.green,
-        fontSize: ScreenUtil().setSp(16),
+        fontSize: 16,
       ),
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery
-                .of(context)
-                .size
-                .width,
-            maxHeight: MediaQuery
-                .of(context)
-                .size
-                .height),
-        designSize: Size(360, 690),
-        orientation: Orientation.portrait);
-  }
+
 
 
 }
