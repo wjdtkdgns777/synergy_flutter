@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:synergy_flutter/app/pages/login/login_view.dart';
 import 'package:synergy_flutter/app/pages/sign_up/signup_view.dart';
+import 'package:synergy_flutter/app/pages/welcome/welcome_controller.dart';
 
 
-class WelcomePage extends StatefulWidget {
+class WelcomePage extends View {
   WelcomePage({Key key, this.title}) : super(key: key);
 
   final String title;
@@ -11,15 +15,67 @@ class WelcomePage extends StatefulWidget {
   _WelcomePageState createState() => _WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
+  _WelcomePageState() : super(WelcomeController());
+
+  @override
+  Widget get view => Scaffold(
+    key: globalKey,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          height: MediaQuery
+              .of(context)
+              .size
+              .height,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: Colors.grey.shade200,
+                    offset: Offset(2, 4),
+                    blurRadius: 5,
+                    spreadRadius: 2)
+              ],
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Color(0xfffbb448), Color(0xffe46b10)])),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _title(),
+              SizedBox(
+                height: 80,
+              ),
+              _submitButton(),
+              SizedBox(
+                height: 20,
+              ),
+              _signUpButton(),
+              SizedBox(
+                height: 20,
+              ),
+              _label()
+            ],
+          ),
+        ),
+      ),
+    );
+
+
   Widget _submitButton() {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
+              context, MaterialPageRoute(builder: (context) => LoginPage()));
       },
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         padding: EdgeInsets.symmetric(vertical: 13),
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -47,7 +103,10 @@ class _WelcomePageState extends State<WelcomePage> {
             context, MaterialPageRoute(builder: (context) => SignUpPage()));
       },
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         padding: EdgeInsets.symmetric(vertical: 13),
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -90,71 +149,32 @@ class _WelcomePageState extends State<WelcomePage> {
         ));
   }
 
+
   Widget _title() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-          text: 'd',
-          style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.display1,
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),
-          children: [
-            TextSpan(
-              text: 'ev',
-              style: TextStyle(color: Colors.black, fontSize: 30),
-            ),
-            TextSpan(
-              text: 'rnz',
-              style: TextStyle(color: Colors.white, fontSize: 30),
-            ),
-          ]),
+    return Text(
+      "Synergy",
+      style: TextStyle(
+        color: Colors.green,
+        fontSize: ScreenUtil().setSp(16),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:SingleChildScrollView(
-        child:Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.shade200,
-                    offset: Offset(2, 4),
-                    blurRadius: 5,
-                    spreadRadius: 2)
-              ],
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xfffbb448), Color(0xffe46b10)])),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              _title(),
-              SizedBox(
-                height: 80,
-              ),
-              _submitButton(),
-              SizedBox(
-                height: 20,
-              ),
-              _signUpButton(),
-              SizedBox(
-                height: 20,
-              ),
-              _label()
-            ],
-          ),
-        ),
-      ),
-    );
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery
+                .of(context)
+                .size
+                .width,
+            maxHeight: MediaQuery
+                .of(context)
+                .size
+                .height),
+        designSize: Size(360, 690),
+        orientation: Orientation.portrait);
   }
+
+
 }

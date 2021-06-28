@@ -9,25 +9,47 @@ import 'app/pages/announcement/announcement.dart';
 import 'app/pages/community/community_view.dart';
 import 'app/pages/home/home.dart';
 import 'app/pages/profile/profile.dart';
+import 'app/pages/welcome/welcome_view.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return MaterialApp(
-      title: 'Flutter test',
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
+      home: WelcomePage(),
     );
   }
 }
+
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter test',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//       ),
+//       home: MyHomePage(),
+//     );
+//   }
+// }
 
 class MyHomePage extends StatefulWidget {
   @override

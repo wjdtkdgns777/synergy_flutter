@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:synergy_flutter/app/components/bezierContainer.dart';
+import 'package:synergy_flutter/app/pages/login/login_view.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key, this.title}) : super(key: key);
@@ -115,26 +117,12 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Widget _title() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-          text: 'd',
-          style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.display1,
-            fontSize: 30,
-            fontWeight: FontWeight.w700,
-            color: Color(0xffe46b10),
-          ),
-          children: [
-            TextSpan(
-              text: 'ev',
-              style: TextStyle(color: Colors.black, fontSize: 30),
-            ),
-            TextSpan(
-              text: 'rnz',
-              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
-            ),
-          ]),
+    return Text(
+      "Synergy",
+      style: TextStyle(
+        color: Colors.green,
+        fontSize: ScreenUtil().setSp(16),
+      ),
     );
   }
 
