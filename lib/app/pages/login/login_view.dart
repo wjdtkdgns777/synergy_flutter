@@ -1,22 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:synergy_flutter/app/components/bezierContainer.dart';
+import 'package:synergy_flutter/app/pages/login/login_controller.dart';
 import 'package:synergy_flutter/app/pages/sign_up/signup_view.dart';
 
 
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class LoginPage extends View {
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _LoginPageState createState() => _LoginPageState(LoginController());
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ViewState<LoginPage,LoginController> {
+  _LoginPageState(LoginController controller) : super(controller);
+
+
+  @override
+  Widget get view => Scaffold(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+                top: -MediaQuery.of(context).size.height * .15,
+                right: -MediaQuery.of(context).size.width * .4,
+                child: BezierContainer()),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(height: MediaQuery.of(context).size.height * .2),
+                    _title(),
+                    SizedBox(height: 50),
+                    _emailPasswordWidget(),
+                    SizedBox(height: 20),
+                    _submitButton(),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      alignment: Alignment.centerRight,
+                      child: Text('Forgot Password ?',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500)),
+                    ),
+                    _divider(),
+                    _facebookButton(),
+                    SizedBox(height: MediaQuery.of(context).size.height * .055),
+                    _createAccountLabel(),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(top: 40, left: 0, child: _backButton()),
+          ],
+        ),
+      ));
+
   Widget _backButton() {
     return InkWell(
       onTap: () {
@@ -220,49 +265,5 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return Scaffold(
-        body: Container(
-          height: height,
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                  top: -height * .15,
-                  right: -MediaQuery.of(context).size.width * .4,
-                  child: BezierContainer()),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(height: height * .2),
-                      _title(),
-                      SizedBox(height: 50),
-                      _emailPasswordWidget(),
-                      SizedBox(height: 20),
-                      _submitButton(),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        alignment: Alignment.centerRight,
-                        child: Text('Forgot Password ?',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w500)),
-                      ),
-                      _divider(),
-                      _facebookButton(),
-                      SizedBox(height: height * .055),
-                      _createAccountLabel(),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(top: 40, left: 0, child: _backButton()),
-            ],
-          ),
-        ));
-  }
+
 }

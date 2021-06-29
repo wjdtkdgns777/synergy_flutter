@@ -11,7 +11,7 @@ class _WelcomeObserver implements Observer<bool> {
   WelcomePresenter _welcomePresenter;
   _WelcomeObserver(this._welcomePresenter);
 
-  void onNext(isAuth) {
+  void onNext(result) {
   }
 
   void onComplete() {

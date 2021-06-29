@@ -1,19 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:synergy_flutter/app/components/bezierContainer.dart';
 import 'package:synergy_flutter/app/pages/login/login_view.dart';
+import 'package:synergy_flutter/app/pages/sign_up/signup_controller.dart';
 
-class SignUpPage extends StatefulWidget {
-  SignUpPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class SignUpPage extends View {
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _SignUpPageState createState() => _SignUpPageState(SignUpController());
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  Widget _backButton() {
+class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
+  _SignUpPageState(SignUpController controller) : super(controller);
+
+  @override
+  Widget get view => Scaffold(
+    body: Container(
+      height:  MediaQuery.of(context).size.height,
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: -MediaQuery.of(context).size.height * .15,
+            right: -MediaQuery.of(context).size.width * .4,
+            child: BezierContainer(),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height:  MediaQuery.of(context).size.height * .2),
+                  _title,
+                  SizedBox(
+                    height: 50,
+                  ),
+                  _emailPasswordWidget,
+                  SizedBox(
+                    height: 20,
+                  ),
+                  _submitButton,
+                  SizedBox(height:  MediaQuery.of(context).size.height * .14),
+                  _loginAccountLabel,
+                ],
+              ),
+            ),
+          ),
+          Positioned(top: 40, left: 0, child: _backButton),
+        ],
+      ),
+    ),
+  );
+
+
+  Widget get _backButton =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return InkWell(
       onTap: () {
         Navigator.pop(context);
@@ -32,7 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
-  }
+  });
 
   Widget _entryField(String title, {bool isPassword = false}) {
     return Container(
@@ -58,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _submitButton() {
+  Widget get _submitButton =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(vertical: 15),
@@ -81,9 +122,9 @@ class _SignUpPageState extends State<SignUpPage> {
         style: TextStyle(fontSize: 20, color: Colors.white),
       ),
     );
-  }
+  });
 
-  Widget _loginAccountLabel() {
+  Widget get _loginAccountLabel =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -114,9 +155,9 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
-  }
+  });
 
-  Widget _title() {
+  Widget get _title =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return Text(
       "Synergy",
       style: TextStyle(
@@ -124,9 +165,9 @@ class _SignUpPageState extends State<SignUpPage> {
         fontSize: 16,
       ),
     );
-  }
+  });
 
-  Widget _emailPasswordWidget() {
+  Widget get _emailPasswordWidget =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return Column(
       children: <Widget>[
         _entryField("Username"),
@@ -134,48 +175,9 @@ class _SignUpPageState extends State<SignUpPage> {
         _entryField("Password", isPassword: true),
       ],
     );
-  }
+  });
 
-  @override
-  Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Container(
-        height: height,
-        child: Stack(
-          children: <Widget>[
-            Positioned(
-              top: -MediaQuery.of(context).size.height * .15,
-              right: -MediaQuery.of(context).size.width * .4,
-              child: BezierContainer(),
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(height: height * .2),
-                    _title(),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    _emailPasswordWidget(),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    _submitButton(),
-                    SizedBox(height: height * .14),
-                    _loginAccountLabel(),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(top: 40, left: 0, child: _backButton()),
-          ],
-        ),
-      ),
-    );
-  }
+
+
+
 }

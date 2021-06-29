@@ -13,14 +13,6 @@ class WelcomeController extends Controller {
   @override
   void initListeners() {}
 
-// @override
-// void onInitState(){  ScreenUtil.init(
-//     BoxConstraints(
-//         maxWidth: double.infinity,
-//         maxHeight: double.infinity),
-//     designSize: Size(360, 690),
-//     orientation: Orientation.portrait);}
-
   void onClickLogin() {
     Navigator.push(getContext(), MaterialPageRoute(builder: (context) => LoginPage()));
   }

@@ -5,10 +5,6 @@ import 'package:synergy_flutter/app/pages/welcome/welcome_controller.dart';
 
 
 class WelcomePage extends View {
-  WelcomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _WelcomePageState createState() => _WelcomePageState();
 }
@@ -43,7 +39,7 @@ class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _title(),
+              _title,
               SizedBox(
                 height: 80,
               ),
@@ -55,7 +51,7 @@ class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
               SizedBox(
                 height: 20,
               ),
-              _label()
+              _label
             ],
           ),
         ),
@@ -115,7 +111,7 @@ class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
     );
   });
 
-  Widget _label() {
+  Widget get _label => ControlledWidgetBuilder<WelcomeController>(builder: (context, controller)  {
     return Container(
         margin: EdgeInsets.only(top: 40, bottom: 20),
         child: Column(
@@ -141,18 +137,19 @@ class _WelcomePageState extends ViewState<WelcomePage, WelcomeController> {
             ),
           ],
         ));
-  }
+  });
 
 
-  Widget _title() {
+  Widget get _title=> ControlledWidgetBuilder<WelcomeController>(builder: (context, controller)  {
     return Text(
       "Synergy",
       style: TextStyle(
-        color: Colors.green,
-        fontSize: 16,
+        color: Colors.white,
+        fontSize: 48,
+          fontWeight: FontWeight.bold
       ),
     );
-  }
+  });
 
 
 
