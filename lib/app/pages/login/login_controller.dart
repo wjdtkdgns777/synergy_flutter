@@ -1,28 +1,48 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:synergy_flutter/app/pages/home/home.dart';
 import 'package:synergy_flutter/app/pages/login/login_presenter.dart';
 import 'package:synergy_flutter/app/pages/login/login_view.dart';
-import 'package:synergy_flutter/app/pages/sign_up/signup_presenter.dart';
 import 'package:synergy_flutter/app/pages/sign_up/signup_view.dart';
-import 'package:synergy_flutter/app/pages/welcome/welcome_presenter.dart';
-
-
 
 class LoginController extends Controller {
   LoginPresenter _loginPresenter;
-  LoginController() : _loginPresenter = LoginPresenter();
+  TextEditingController emailTextController;
+  TextEditingController passTextController;
+
+  LoginController(dataUserRepository)
+      : _loginPresenter = LoginPresenter(dataUserRepository) {
+    emailTextController = new TextEditingController();
+    passTextController = new TextEditingController();
+  }
 
   @override
-  void initListeners() {}
+  void initListeners() {
+    _loginPresenter.loginNext = (bool result) {
+      if (result) {
+        Navigator.pushAndRemoveUntil(getContext(),
+            MaterialPageRoute(builder: (context) => Home()), (route) => false);
+      } else
+        print("Login Fail");
+    };
+    _loginPresenter.loginComplete =  () {
+      print('User retrieved');
+    };
+    _loginPresenter.loginError =(e){
+      print('Could not retrieve user.');
+      ScaffoldMessenger.of(getContext())
+          .showSnackBar(SnackBar(content: Text(e.message)));
+      refreshUI(); // Refreshes the UI manually
+    };
+  }
 
   void onClickLogin() {
-    Navigator.push(getContext(), MaterialPageRoute(builder: (context) => LoginPage()));
+    _loginPresenter.login(emailTextController.text, passTextController.text);
   }
 
   void onClickSignUp() {
-    Navigator.push(getContext(), MaterialPageRoute(builder: (context) => SignUpPage()));
+    Navigator.push(
+        getContext(), MaterialPageRoute(builder: (context) => SignUpPage()));
   }
 
   @override
@@ -30,4 +50,6 @@ class LoginController extends Controller {
     super.onDisposed();
     _loginPresenter.dispose();
   }
+
+
 }
