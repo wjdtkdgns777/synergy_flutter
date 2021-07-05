@@ -40,27 +40,8 @@ class _CommunityState extends State<Community> {
         //   SizedBox(width: 20.0),
         // ],
       ),
-      body: ListView(
-        shrinkWrap: true,
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
-        children: [
-          StreamBuilderWrapper(
-            shrinkWrap: true,
-            stream: postRef.orderBy('timestamp', descending: true).snapshots(),
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (_, DocumentSnapshot snapshot) {
-              internetChecker();
-              PostModel posts = PostModel.fromJson(snapshot.data());
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
+       body: SizedBox.shrink());
 
-                // child: UserPost(post: posts),
-              );
-            },
-          ),
-        ],
-      ),
-    );
   }
 
   internetChecker() async {

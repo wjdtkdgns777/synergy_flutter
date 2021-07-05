@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:synergy_flutter/app/pages/home/home.dart';
+import 'package:synergy_flutter/app/pages/bottom_tab/bottomTab_view.dart';
+
 import 'package:synergy_flutter/app/pages/login/login_presenter.dart';
 import 'package:synergy_flutter/app/pages/login/login_view.dart';
 import 'package:synergy_flutter/app/pages/sign_up/signup_view.dart';
@@ -21,7 +22,7 @@ class LoginController extends Controller {
     _loginPresenter.loginNext = (bool result) {
       if (result) {
         Navigator.pushAndRemoveUntil(getContext(),
-            MaterialPageRoute(builder: (context) => Home()), (route) => false);
+            MaterialPageRoute(builder: (context) => BottomTab()), (route) => false);
       } else
         print("Login Fail");
     };
