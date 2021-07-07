@@ -11,7 +11,9 @@ class WelcomeController extends Controller {
   WelcomeController() : _welcomePresenter = WelcomePresenter();
 
   @override
-  void initListeners() {}
+  void initListeners() {
+
+  }
 
   void onClickLogin() {
     Navigator.push(getContext(), MaterialPageRoute(builder: (context) => LoginPage()));

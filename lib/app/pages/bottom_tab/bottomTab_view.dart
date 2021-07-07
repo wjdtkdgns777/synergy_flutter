@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -25,7 +26,9 @@ class _BottomTabState extends ViewState<BottomTab, BottomTabController> {
               ),
               leading: IconButton(
                 icon: const Icon(Icons.menu),
-                onPressed: () {},
+                onPressed: () {
+                  controller.signout();
+                },
                 color: Colors.black,
               ),
               centerTitle: true,
