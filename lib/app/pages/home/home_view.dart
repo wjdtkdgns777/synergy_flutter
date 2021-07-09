@@ -16,136 +16,299 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
   Widget get view => Scaffold(
       key: globalKey,
       body: SingleChildScrollView(
+          child: Padding(
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 16,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 10,
+            Container(
+              height: 230,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Color(0xfff0f0f0),
+              ),
+              child: Text(
+                "클릭시 Tutorial",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
                 ),
-              ],
+              ),
             ),
             SizedBox(
               height: 16,
+            ),
+            Text(
+              "Team Up",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontFamily: "Inter",
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.start,
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Color(0xfff6f6f6),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "헬스 모바일 프로젝트 함께해요",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 269,
+                        child: Text(
+                          "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Text(
+                  //      "8m ago",
+                  //      textAlign: TextAlign.right,
+                  //      style: TextStyle(
+                  //        color: Color(0xffbdbdbd),
+                  //        fontSize: 14,
+                  //      ),
+                  //    ),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Color(0xfff6f6f6),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "헬스 모바일 프로젝트 함께해요",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 269,
+                        child: Text(
+                          "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Text(
+                  //      "8m ago",
+                  //      textAlign: TextAlign.right,
+                  //      style: TextStyle(
+                  //        color: Color(0xffbdbdbd),
+                  //        fontSize: 14,
+                  //      ),
+                  //    ),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Color(0xfff6f6f6),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "헬스 모바일 프로젝트 함께해요",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 269,
+                        child: Text(
+                          "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Text(
+                  //      "8m ago",
+                  //      textAlign: TextAlign.right,
+                  //      style: TextStyle(
+                  //        color: Color(0xffbdbdbd),
+                  //        fontSize: 14,
+                  //      ),
+                  //    ),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Color(0xfff6f6f6),
+                    ),
+                  ),
+                  SizedBox(width: 8),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "헬스 모바일 프로젝트 함께해요",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 269,
+                        child: Text(
+                          "He'll want to use your yacht, and I don't want this thing smelling like fish.",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Text(
+                  //      "8m ago",
+                  //      textAlign: TextAlign.right,
+                  //      style: TextStyle(
+                  //        color: Color(0xffbdbdbd),
+                  //        fontSize: 14,
+                  //      ),
+                  //    ),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+            SizedBox(
+              width: 73,
+              child: Text(
+                "더보기 >>",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                ),
+              ),
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(children: [
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
+                Container(
+                  width: 110,
+                  height: 170,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.orange,
+                  ),
                 ),
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
-                ),
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
-                ),
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
-                ),
-              ]),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Row(
-              children: [
                 SizedBox(
-                  width: 10,
+                  width: 16,
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(children: [
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
+                Container(
+                  width: 110,
+                  height: 170,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.orange,
+                  ),
                 ),
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
-                ),
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
-                ),
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
-                ),
-              ]),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Row(
-              children: [
                 SizedBox(
-                  width: 10,
+                  width: 16,
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(children: [
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
+                Container(
+                  width: 110,
+                  height: 170,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.orange,
+                  ),
                 ),
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
+                SizedBox(
+                  width: 16,
                 ),
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
-                ),
-                MovieTile(
-                  image:
-                      'https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe25f366dfc9a3429ad38b3a28b4fdf0621167351',
-                  title: "불가사리7",
-                  date: "21.04.23",
+                Container(
+                  width: 110,
+                  height: 170,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.orange,
+                  ),
                 ),
               ]),
             ),
           ],
         ),
-      ));
+      )));
 }
