@@ -4,6 +4,8 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:synergy_flutter/app/components/bezierContainer.dart';
 import 'package:synergy_flutter/app/pages/login/login_view.dart';
 import 'package:synergy_flutter/app/pages/sign_up/signup_controller.dart';
+import 'dart:developer';
+
 
 class SignUpPage extends View {
   @override
@@ -19,11 +21,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
       height:  MediaQuery.of(context).size.height,
       child: Stack(
         children: <Widget>[
-          Positioned(
-            top: -MediaQuery.of(context).size.height * .15,
-            right: -MediaQuery.of(context).size.width * .4,
-            child: BezierContainer(),
-          ),
+          
           Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
@@ -31,11 +29,13 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height:  MediaQuery.of(context).size.height * .2),
+                  SizedBox(height: 35),
                   _title,
                   SizedBox(
-                    height: 50,
+                    height: 15,
                   ),
+                  Divider(),
+
                   _emailPasswordWidget,
                   SizedBox(
                     height: 20,
@@ -47,7 +47,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
               ),
             ),
           ),
-          Positioned(top: 40, left: 0, child: _backButton),
+          Positioned(top: 30, left: 0, child: _backButton),
         ],
       ),
     ),
@@ -58,6 +58,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
     return InkWell(
       onTap: () {
         Navigator.pop(context);
+        log('back');
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -75,37 +76,44 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
     );
   });
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  Widget _entryField(TextEditingController myController, String labelText, String hintText, {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-          ),
           SizedBox(
             height: 10,
           ),
           TextField(
               obscureText: isPassword,
               decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Color(0xfff3f3f4),
-                  filled: true))
+                  labelText: labelText,
+                  hintText: hintText,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(width: 1, color: Colors.blue)
+                  ),
+                  enabledBorder:  OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(width: 1, color: Colors.black),
+                  ), 
+              ),
+              controller: myController,
+          )
         ],
       ),
     );
   }
 
   Widget get _submitButton =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
+    
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.symmetric(vertical: 15),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
+          borderRadius: BorderRadius.all(Radius.circular(25)),
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.grey.shade200,
@@ -116,7 +124,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
           gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [Color(0xfffbb448), Color(0xfff7892b)])),
+              colors: [Colors.grey, Colors.black])),
       child: Text(
         'Register Now',
         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -127,8 +135,8 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
   Widget get _loginAccountLabel =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginPage()));
+        //Navigator.push(
+            //context, MaterialPageRoute(builder: (context) => LoginPage()));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
@@ -147,7 +155,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
             Text(
               'Login',
               style: TextStyle(
-                  color: Color(0xfff79c4f),
+                  color: Colors.blue,
                   fontSize: 13,
                   fontWeight: FontWeight.w600),
             ),
@@ -159,10 +167,10 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
 
   Widget get _title =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return Text(
-      "Synergy",
+      "Sign up",
       style: TextStyle(
-        color: Colors.green,
-        fontSize: 16,
+        color: Colors.black,
+        fontSize: 20,
       ),
     );
   });
@@ -170,14 +178,14 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
   Widget get _emailPasswordWidget =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return Column(
       children: <Widget>[
-        _entryField("Username"),
-        _entryField("Email id"),
-        _entryField("Password", isPassword: true),
+        _entryField(controller.idEditController, "ID", "ID를 입력하세요"),
+        _entryField(controller.pwEditController, "Password", "비밀번호를 입력하세요", isPassword: true),
+        _entryField(controller.usernameEditController, "Username", "닉네임을 입력하세요"),
+        _entryField(controller.emailEditController, "Email Address", "이메일 주소를 입력하세요"),
       ],
     );
   });
 
-
-
-
 }
+
+
