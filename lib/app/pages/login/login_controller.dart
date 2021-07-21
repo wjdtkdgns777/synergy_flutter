@@ -4,32 +4,34 @@ import 'package:synergy_flutter/app/pages/bottom_tab/bottomTab_view.dart';
 
 import 'package:synergy_flutter/app/pages/login/login_presenter.dart';
 import 'package:synergy_flutter/app/pages/login/login_view.dart';
-import 'package:synergy_flutter/app/pages/sign_up/signup_view.dart';
+import 'package:synergy_flutter/app/pages/sign_up/sign_up_view.dart';
 
+//함수
 class LoginController extends Controller {
   LoginPresenter _loginPresenter;
-  TextEditingController emailTextController;
-  TextEditingController passTextController;
+  // final TextEditingController _emailTextController = TextEditingController();
+  // final TextEditingController _passTextController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   LoginController(dataUserRepository)
-      : _loginPresenter = LoginPresenter(dataUserRepository) {
-    emailTextController = new TextEditingController();
-    passTextController = new TextEditingController();
-  }
+      : _loginPresenter = LoginPresenter(dataUserRepository);
 
   @override
   void initListeners() {
     _loginPresenter.loginNext = (bool result) {
       if (result) {
-        Navigator.pushAndRemoveUntil(getContext(),
-            MaterialPageRoute(builder: (context) => BottomTab()), (route) => false);
+        Navigator.pushAndRemoveUntil(
+            getContext(),
+            MaterialPageRoute(builder: (context) => BottomTab()),
+            (route) => false);
       } else
         print("Login Fail");
     };
-    _loginPresenter.loginComplete =  () {
+    _loginPresenter.loginComplete = () {
       print('User retrieved');
     };
-    _loginPresenter.loginError =(e){
+    _loginPresenter.loginError = (e) {
       print('Could not retrieve user.');
       ScaffoldMessenger.of(getContext())
           .showSnackBar(SnackBar(content: Text(e.message)));
@@ -38,8 +40,18 @@ class LoginController extends Controller {
   }
 
   void onClickLogin() {
-    _loginPresenter.login(emailTextController.text, passTextController.text);
+    // _loginPresenter.login(_emailTextController.text, _passTextController.text);
+    _loginPresenter.emailPasswordLogin(
+        emailController.text, passwordController.text);
   }
+
+  // void onClickGoogleLogin() {
+  //   _loginPresenter.googleLogin();
+  // }
+  //
+  // void onClickFacebookLogin() {
+  //   _loginPresenter.facebookLogin();
+  // }
 
   void onClickSignUp() {
     Navigator.push(
@@ -48,9 +60,13 @@ class LoginController extends Controller {
 
   @override
   void onDisposed() {
-    super.onDisposed();
+    // don't forget to dispose of the presenter
     _loginPresenter.dispose();
+
+    // _emailTextController.dispose();
+    // _passTextController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.onDisposed();
   }
-
-
 }

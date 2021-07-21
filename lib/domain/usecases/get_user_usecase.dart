@@ -4,6 +4,7 @@ import '../entities/user.dart';
 import '../repositories/users_repository.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
+//Not use
 class GetUserUseCase
     extends UseCase<GetUserUseCaseResponse, GetUserUseCaseParams> {
   final UsersRepository usersRepository;
@@ -18,7 +19,7 @@ class GetUserUseCase
       final user = await usersRepository.getUser(params.uid);
       // Adding it triggers the .onNext() in the `Observer`
       // It is usually better to wrap the reponse inside a respose object.
-      controller.add(GetUserUseCaseResponse(user));
+      // controller.add(GetUserUseCaseResponse(user));
       logger.finest('GetUserUseCase successful.');
       controller.close();
     } catch (e) {
@@ -38,6 +39,6 @@ class GetUserUseCaseParams {
 
 /// Wrapping response inside an object makes it easier to change later
 class GetUserUseCaseResponse {
-  final User user;
-  GetUserUseCaseResponse(this.user);
+  // final User user;
+  // GetUserUseCaseResponse(this.user);
 }

@@ -22,8 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home:
-      StreamBuilder(
+      home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
           if (snapshot.hasData) {
@@ -37,5 +36,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

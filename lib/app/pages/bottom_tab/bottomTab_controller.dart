@@ -8,8 +8,6 @@ import 'package:synergy_flutter/app/pages/profile/profile_view.dart';
 import 'package:synergy_flutter/app/pages/welcome/welcome_presenter.dart';
 import 'package:synergy_flutter/app/pages/welcome/welcome_view.dart';
 
-
-
 class BottomTabController extends Controller {
   WelcomePresenter _welcomePresenter;
 
@@ -31,7 +29,7 @@ class BottomTabController extends Controller {
     refreshUI();
   }
 
-  void signout() {
+  void signOut() {
     FirebaseAuth.instance.signOut();
     Navigator.pushAndRemoveUntil(
         getContext(),
