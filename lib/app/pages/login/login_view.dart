@@ -48,7 +48,7 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
                                   fontSize: 14, fontWeight: FontWeight.w500)),
                         ),
                         _divider(),
-                        _googleButton(),
+                        _googleButton,
                         _facebookButton(),
                         SizedBox(height: MediaQuery
                             .of(context)
@@ -197,8 +197,12 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
       ),
     );
   }
-  Widget _googleButton(){
-    return Container(
+  Widget get _googleButton=> ControlledWidgetBuilder<LoginController>(builder: (context, controller){
+    return InkWell( 
+      onTap: (){
+        controller.onClickLoginWithGoogle();
+      },
+      child: Container(
       height: 50,
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
@@ -239,8 +243,9 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
           
         ],
       ),
+    )
     );
-  }
+  });
 
   Widget _googleMark(){
     return Row(
@@ -363,4 +368,7 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
           ],
         );
       });
+}
+
+_googleMark() {
 }

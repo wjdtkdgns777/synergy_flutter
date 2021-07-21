@@ -60,5 +60,11 @@ class DataUsersRepository extends UsersRepository {
     }
 
   }
+
+  @override
+  Future<bool> loginGoogleUser() {
+
+    
+  }
 }
 
