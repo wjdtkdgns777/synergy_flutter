@@ -7,10 +7,11 @@ import 'package:synergy_flutter/app/pages/sign_up/signup_presenter.dart';
 import 'package:synergy_flutter/app/pages/sign_up/signup_view.dart';
 import 'package:synergy_flutter/app/pages/welcome/welcome_presenter.dart';
 import 'dart:developer';
+import 'package:synergy_flutter/data/repositories/data_users_repository.dart';
 
 class SignUpController extends Controller {
   SignUpPresenter _signUpPresenter;
-  SignUpController() : _signUpPresenter = SignUpPresenter();
+  //SignUpController() : _signUpPresenter = SignUpPresenter();
   final idEditController = TextEditingController();
   final pwEditController = TextEditingController();
   final usernameEditController = TextEditingController();
@@ -19,6 +20,9 @@ class SignUpController extends Controller {
   bool pwValidate = false;
   bool usernameValidate = false;
   bool emailValidate = false;
+
+ SignUpController(dataUserRepository)
+  :_signUpPresenter = SignUpPresenter(dataUserRepository);
 
   @override
   void initListeners() {
@@ -29,11 +33,23 @@ class SignUpController extends Controller {
   }
 
   void onClickLogin() {
-    //Navigator.push(getContext(), MaterialPageRoute(builder: (context) => LoginPage()));
+    Navigator.push(getContext(), MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
   void onClickSignUp() {
     Navigator.push(getContext(), MaterialPageRoute(builder: (context) => SignUpPage()));
+  }
+
+  void onClickRegister(BuildContext context){
+    if(_isValidate()){
+      //회원가입
+      _signUpPresenter.signup(emailEditController.text, pwEditController.text);
+      
+    }else{
+      //회원가입 실패
+      final failSnackBar = SnackBar(content: Text('올바른 정보를 입력하십시오.'),);
+      ScaffoldMessenger.of(context).showSnackBar(failSnackBar);
+    }
   }
 
  void _checkIdEditText(){
@@ -65,13 +81,16 @@ void _checkPwEditText(){
  void _checkUserNameEditText(){
    //log('username change detected : ${usernameEditController.text}');
    //규칙 : 기존의 닉네임과 겹치지 않아야 함
-  if(true){
-    log('username okay');
-    usernameValidate = true;
-  }else{
-    log('username not okay');
-    usernameValidate = false;
-  }
+   /*_signUpPresenter.hasUserName = (usernameEditController.text){
+    if(true){
+      log('username okay');
+      usernameValidate = true;
+    }else{
+      log('username not okay');
+      usernameValidate = false;
+    }
+   }*/
+  usernameValidate = true;
  }
 
  void _checkEmailEditText(){
@@ -87,7 +106,7 @@ void _checkPwEditText(){
  }
   
  bool _isValidate(){
-   if(idValidate && pwValidate && usernameValidate && emailValidate){
+   if(pwValidate && usernameValidate && emailValidate){
      return true;
    }
    return false;

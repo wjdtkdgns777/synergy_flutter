@@ -5,5 +5,5 @@ abstract class UsersRepository {
   Future<User> getUser(String uid);
   Future<List<User>> getAllUsers();
   Future<bool> loginUser(String email,String password);
-
+  Future<bool> signupUser(String email, String pw);
 }

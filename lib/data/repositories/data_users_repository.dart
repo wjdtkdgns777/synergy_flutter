@@ -1,6 +1,6 @@
+//import 'dart:html';
 import 'package:synergy_flutter/data/utils/firebase.dart';
 import 'package:synergy_flutter/domain/entities/loginResult.dart';
-
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/users_repository.dart';
 
@@ -44,4 +44,21 @@ class DataUsersRepository extends UsersRepository {
     }
   }
 
+
+  @override
+  Future<bool> signupUser(String email, String pw) async {
+    
+    var res = await firebaseAuth.createUserWithEmailAndPassword(
+      email: '$email',
+      password: '$pw',
+    );
+
+    if(res.user != null){
+      return true;
+    }else{
+      return false;
+    }
+
+  }
 }
+

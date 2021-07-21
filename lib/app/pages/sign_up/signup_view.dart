@@ -6,10 +6,12 @@ import 'package:synergy_flutter/app/pages/login/login_view.dart';
 import 'package:synergy_flutter/app/pages/sign_up/signup_controller.dart';
 import 'dart:developer';
 
+import 'package:synergy_flutter/data/repositories/data_users_repository.dart';
+
 
 class SignUpPage extends View {
   @override
-  _SignUpPageState createState() => _SignUpPageState(SignUpController());
+  _SignUpPageState createState() => _SignUpPageState(SignUpController(DataUsersRepository()));
 }
 
 class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
@@ -29,7 +31,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: 35),
+                  SizedBox(height: 50),
                   _title,
                   SizedBox(
                     height: 15,
@@ -47,7 +49,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
               ),
             ),
           ),
-          Positioned(top: 30, left: 0, child: _backButton),
+          Positioned(top: 40, left: 0, child: _backButton),
         ],
       ),
     ),
@@ -76,7 +78,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
     );
   });
 
-  Widget _entryField(TextEditingController myController, String labelText, String hintText, {bool isPassword = false}) {
+  Widget _entryField(TextEditingController myController, String labelText, String hintText, int errOption, {bool isPassword = false}) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -98,6 +100,10 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                     borderSide: BorderSide(width: 1, color: Colors.black),
                   ), 
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(width: 1, color: Colors.red)
+                  ),
               ),
               controller: myController,
           )
@@ -108,26 +114,31 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
 
   Widget get _submitButton =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(25)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.grey.shade200,
-                offset: Offset(2, 4),
-                blurRadius: 5,
-                spreadRadius: 2)
-          ],
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Colors.grey, Colors.black])),
-      child: Text(
-        'Register Now',
-        style: TextStyle(fontSize: 20, color: Colors.white),
+    return InkWell(
+      onTap: (){
+        controller.onClickRegister(context);
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(25)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: Offset(2, 4),
+                  blurRadius: 5,
+                  spreadRadius: 2)
+            ],
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.grey, Colors.black])),
+        child: Text(
+          'Register Now',
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
       ),
     );
   });
@@ -178,10 +189,11 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
   Widget get _emailPasswordWidget =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return Column(
       children: <Widget>[
-        _entryField(controller.idEditController, "ID", "ID를 입력하세요"),
-        _entryField(controller.pwEditController, "Password", "비밀번호를 입력하세요", isPassword: true),
-        _entryField(controller.usernameEditController, "Username", "닉네임을 입력하세요"),
-        _entryField(controller.emailEditController, "Email Address", "이메일 주소를 입력하세요"),
+        //_entryField(controller.idEditController, "ID", "ID를 입력하세요", '3~20자 영문소문자와 숫자 조합, 영문으로 시작되어야 합니다.'),
+        _entryField(controller.usernameEditController, "Username", "닉네임을 입력하세요", 0),
+        _entryField(controller.emailEditController, "Email Address", "이메일 주소를 입력하세요", 1),
+        _entryField(controller.pwEditController, "Password", "비밀번호를 입력하세요", 2,  isPassword: true),
+        
       ],
     );
   });
