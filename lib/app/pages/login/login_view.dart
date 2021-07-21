@@ -23,11 +23,7 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
             height: MediaQuery.of(context).size.height,
             child: Stack(
               children: <Widget>[
-                Positioned(
-                    top: -MediaQuery.of(context).size.height * .15,
-                    right: -MediaQuery.of(context).size
-                        .width * .4,
-                    child: BezierContainer()),
+                
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: SingleChildScrollView(
@@ -52,6 +48,7 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
                                   fontSize: 14, fontWeight: FontWeight.w500)),
                         ),
                         _divider(),
+                        _googleButton(),
                         _facebookButton(),
                         SizedBox(height: MediaQuery
                             .of(context)
@@ -111,7 +108,7 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
                 gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                    colors: [Color(0xfffbb448), Color(0xfff7892b)])),
+                    colors: [Colors.grey, Colors.black])),
             child: Text(
               'Login',
               style: TextStyle(fontSize: 20, color: Colors.white),
@@ -156,7 +153,7 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
   Widget _facebookButton() {
     return Container(
       height: 50,
-      margin: EdgeInsets.symmetric(vertical: 20),
+      margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
@@ -199,6 +196,74 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
         ],
       ),
     );
+  }
+  Widget _googleButton(){
+    return Container(
+      height: 50,
+      margin: EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(5),
+                    topLeft: Radius.circular(5)),
+              ),
+              alignment: Alignment.center,
+              child: Text('G',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w400)),
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.blueGrey[300],
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(5),
+                    topRight: Radius.circular(5)),
+              ),
+              alignment: Alignment.center,
+              child : _googleMark(),
+              ),
+          ),
+          
+        ],
+      ),
+    );
+  }
+
+  Widget _googleMark(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+      _buildLetter('Log in with ', Colors.white),
+      _buildLetter('G', Colors.blue),
+      _buildLetter('o', Colors.red),
+      _buildLetter('o', Colors.yellow),
+      _buildLetter('g', Colors.blue),
+      _buildLetter('l', Colors.green),
+      _buildLetter('e', Colors.red),
+    ]
+    );
+  }
+
+  Widget _buildLetter(String text, Color color){
+    return Text(text, 
+                          style: TextStyle(
+                          color: color,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400)
+                        );
   }
 
   Widget _createAccountLabel() {

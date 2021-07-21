@@ -19,6 +19,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
 
   @override
   Widget get view => Scaffold(
+    key: globalKey,
     body: Container(
       height:  MediaQuery.of(context).size.height,
       child: Stack(
@@ -146,8 +147,9 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
   Widget get _loginAccountLabel =>ControlledWidgetBuilder<SignUpController>(builder: (context, controller)  {
     return InkWell(
       onTap: () {
+        controller.onClickLogin();
         //Navigator.push(
-            //context, MaterialPageRoute(builder: (context) => LoginPage()));
+           // context, MaterialPageRoute(builder: (context) => LoginPage()));
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
