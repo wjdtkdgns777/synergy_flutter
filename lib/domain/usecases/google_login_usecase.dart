@@ -1,20 +1,20 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:synergy_flutter/domain/repositories/users_repository.dart';
 
-/*
-class GoogleLoginUseCase extends UseCase<bool, GoogleLoginUseCaseParams> {
+
+class GoogleLoginUseCase extends UseCase<UserCredential,GoogleLoginUseCaseParams> {
   UsersRepository _userRepository;
   GoogleLoginUseCase(this._userRepository);
 
   @override
-  Future<Stream<bool>> buildUseCaseStream(
-      GoogleLoginUseCaseParams params) async {
-    final StreamController<bool> controller = StreamController();
+  Future<Stream<UserCredential>> buildUseCaseStream(GoogleLoginUseCaseParams params) async {
+    final StreamController<UserCredential> controller = StreamController();
     try {
       //서버 응답 결과
-      bool signUpResult = await _userRepository.signInWithGoogle();
+      UserCredential signUpResult = await _userRepository.signInWithGoogle();
       //결과를 controller 에 넣어줌
       controller.add(signUpResult);
       logger.finest('SignUp successful.');
@@ -29,5 +29,6 @@ class GoogleLoginUseCase extends UseCase<bool, GoogleLoginUseCaseParams> {
 }
 
 class GoogleLoginUseCaseParams {
+
   GoogleLoginUseCaseParams();
-}*/
+}

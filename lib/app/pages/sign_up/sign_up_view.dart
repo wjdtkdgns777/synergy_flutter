@@ -18,6 +18,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
 
   @override
   Widget get view => Scaffold(
+    key: globalKey,
         body: Container(
           height: MediaQuery.of(context).size.height,
           child: Stack(
@@ -79,44 +80,6 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
         );
       });
 
-  // Widget _entryField(String title, {bool isPassword = false}) {
-  // Widget _entryField(
-  //     TextEditingController myController, String labelText, String hintText,
-  //     {bool isPassword = false}) {
-  //   return Container(
-  //     margin: EdgeInsets.symmetric(vertical: 10),
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: <Widget>[
-  //         // Text(
-  //         //   title,
-  //         //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-  //         // ),
-  //         SizedBox(
-  //           height: 10,
-  //         ),
-  //         TextField(
-  //           obscureText: isPassword,
-  //           decoration: InputDecoration(
-  //             // border: InputBorder.none,
-  //             // fillColor: Color(0xfff3f3f4),
-  //             // filled: true))
-  //             labelText: labelText,
-  //             hintText: hintText,
-  //             focusedBorder: OutlineInputBorder(
-  //                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
-  //                 borderSide: BorderSide(width: 1, color: Colors.blue)),
-  //             enabledBorder: OutlineInputBorder(
-  //               borderRadius: BorderRadius.all(Radius.circular(10.0)),
-  //               borderSide: BorderSide(width: 1, color: Colors.black),
-  //             ),
-  //           ),
-  //           controller: myController,
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
 
   Widget get _submitButton =>
       ControlledWidgetBuilder<SignUpController>(builder: (context, controller) {
@@ -148,7 +111,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
           ),
-          onTap: () => controller.onClickCreateUser(),
+          onTap: () => controller.onClickSignUp(),
         );
       });
 
@@ -197,21 +160,8 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
         );
       });
 
-  // Widget get _emailPasswordWidget =>
-  //     ControlledWidgetBuilder<SignUpController>(builder: (context, controller) {
-  //       return Column(
-  //         children: <Widget>[
-  //           _entryField(
-  //               controller.usernameEditController, "Username", "닉네임을 입력하세요"),
-  //           _entryField(controller.emailEditController, "Email", "이메일을 입력하세요"),
-  //           _entryField(
-  //               controller.passwordEditController, "Password", "비밀번호를 입력하세요",
-  //               isPassword: true),
-  //         ],
-  //       );
-  //     });
+
   Widget get _signUpWidget =>
-      //ControlledWidgetBuilder <- 컨트룰러와 연결
       ControlledWidgetBuilder<SignUpController>(builder: (context, controller) {
         return Column(
           children: <Widget>[

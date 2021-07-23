@@ -2,24 +2,27 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:synergy_flutter/domain/usecases/sign_up_usecase.dart';
 
 class SignUpPresenter extends Presenter {
-  SignUpUseCase _signupUseCase;
+  SignUpUseCase _signUpUseCase;
   Function signUpNext;
   Function signUpComplete;
   Function signUpError;
 
   SignUpPresenter(dataUserRepository)
-      : _signupUseCase = SignUpUseCase(dataUserRepository);
+      : _signUpUseCase = SignUpUseCase(dataUserRepository);
 
-  void signup(String email, String pw) {
-    _signupUseCase.execute(
+  void signUp(String email, String pw) {
+    _signUpUseCase.execute(
         _SignUpObserver(this), SignUpUseCaseParams(email, pw));
   }
 
-  void dispose() {}
+  void dispose() {
+    _signUpUseCase.dispose();
+  }
 }
 
 class _SignUpObserver implements Observer<bool> {
   SignUpPresenter _signUpPresenter;
+
   _SignUpObserver(this._signUpPresenter);
 
   void onNext(result) {

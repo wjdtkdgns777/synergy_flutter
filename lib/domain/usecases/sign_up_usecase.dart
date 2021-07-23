@@ -24,7 +24,7 @@ class SignUpUseCase extends UseCase<bool, SignUpUseCaseParams> {
     } catch (e) {
       controller.addError(e);
     }
-    //값을 리턴, oberser에 들어가 결과를 파악
+    //값을 리턴, observer에 들어가 결과를 파악
     return controller.stream;
   }
 }

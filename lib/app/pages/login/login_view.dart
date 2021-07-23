@@ -12,24 +12,6 @@ class LoginPage extends View {
       _LoginPageState(LoginController(DataUsersRepository()));
 }
 
-//GoogleLogin
-Future<void> _signInWithGoogle() async {
-  // <-----
-  try {
-    await DataUsersRepository().signInWithGoogle();
-  } catch (e) {
-    print(e.toString());
-  }
-}
-
-Future<void> _signInWithFacebook() async {
-  try {
-    await DataUsersRepository().signInWithFacebook();
-  } catch (e) {
-    print(e.toString());
-  }
-}
-
 class _LoginPageState extends ViewState<LoginPage, LoginController> {
   _LoginPageState(LoginController controller) : super(controller);
 
@@ -57,18 +39,12 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
                     _emailPasswordWidget,
                     SizedBox(height: 20),
                     _submitButton,
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      alignment: Alignment.centerRight,
-                      child: Text('Forgot Password ?',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500)),
-                    ),
+                    SizedBox(height: 16),
                     _divider(),
                     _googleLoginButton(),
-                    SizedBox(height: 8.0),
+                    SizedBox(height: 16),
                     _facebookLoginButton(),
-                    SizedBox(height: MediaQuery.of(context).size.height * .055),
+                    SizedBox(height: 16),
                     _createAccountLabel(),
                   ],
                 ),
@@ -162,74 +138,17 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
     );
   }
 
-  // Widget _facebookButton() =>
-  //     ControlledWidgetBuilder<LoginController>(builder: (context, controller) {
-  //       return InkWell(
-  //         onTap: () {
-  //           controller.onClickFacebookLogin();
-  //         },
-  //         child: Container(
-  //           height: 50,
-  //           margin: EdgeInsets.symmetric(vertical: 20),
-  //           decoration: BoxDecoration(
-  //             borderRadius: BorderRadius.all(Radius.circular(10)),
-  //           ),
-  //           child: Row(
-  //             children: <Widget>[
-  //               Expanded(
-  //                 flex: 1,
-  //                 child: Container(
-  //                   decoration: BoxDecoration(
-  //                     color: Color(0xff1959a9),
-  //                     borderRadius: BorderRadius.only(
-  //                         bottomLeft: Radius.circular(5),
-  //                         topLeft: Radius.circular(5)),
-  //                   ),
-  //                   alignment: Alignment.center,
-  //                   child: Text('f',
-  //                       style: TextStyle(
-  //                           color: Colors.white,
-  //                           fontSize: 25,
-  //                           fontWeight: FontWeight.w400)),
-  //                 ),
-  //               ),
-  //               Expanded(
-  //                 flex: 5,
-  //                 child: Container(
-  //                   decoration: BoxDecoration(
-  //                     color: Color(0xff2872ba),
-  //                     borderRadius: BorderRadius.only(
-  //                         bottomRight: Radius.circular(5),
-  //                         topRight: Radius.circular(5)),
-  //                   ),
-  //                   alignment: Alignment.center,
-  //                   child: Text('Log in with Facebook',
-  //                       style: TextStyle(
-  //                           color: Colors.white,
-  //                           fontSize: 18,
-  //                           fontWeight: FontWeight.w400)),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       );
-  //     });
-
   Widget _googleLoginButton() =>
       ControlledWidgetBuilder<LoginController>(builder: (context, controller) {
         return InkWell(
           onTap: () {
-            // controller.onClickGoogleLogin();
-            _signInWithGoogle();
+            controller.onClickGoogleLogin();
           },
           child: SocialSignInButton(
             assetName: 'images/google-logo.png',
             text: 'Sign in with Google',
             textColor: Colors.black87,
             color: Colors.white,
-            // onPressed: () => _signInWithGoogle(context),
-            // onPressed:,
           ),
         );
       });
@@ -239,7 +158,6 @@ class _LoginPageState extends ViewState<LoginPage, LoginController> {
         return InkWell(
           onTap: () {
             // controller.onClickFacebookLogin();
-            _signInWithFacebook();
           },
           child: SocialSignInButton(
             assetName: 'images/facebook-logo.png',
