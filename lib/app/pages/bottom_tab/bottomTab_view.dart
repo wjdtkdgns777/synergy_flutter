@@ -19,21 +19,7 @@ class _BottomTabState extends ViewState<BottomTab, BottomTabController> {
           builder: (context, controller) {
         return Scaffold(
           key: globalKey,
-          appBar: AppBar(
-            title: Text(
-              'Synergy',
-              style: TextStyle(color: Colors.black),
-            ),
-            leading: IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                controller.signOut();
-              },
-              color: Colors.black,
-            ),
-            centerTitle: true,
-            backgroundColor: const Color(0xFFFFFFFF),
-          ),
+
           body: controller.children[controller.currentIndex],
           bottomNavigationBar: MotionTabBar(
             labels: ["홈", "채용공고", "커뮤니티", "프로필"],

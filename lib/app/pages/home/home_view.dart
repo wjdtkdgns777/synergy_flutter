@@ -13,8 +13,26 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
   _HomePageState(HomeController controller) : super(controller);
 
   @override
-  Widget get view => Scaffold(
+  Widget get view =>  ControlledWidgetBuilder<HomeController>(
+      builder: (context, controller) {
+        return Scaffold
+(
       key: globalKey,
+      appBar: AppBar(
+        title: Text(
+          'Synergy',
+          style: TextStyle(color: Colors.black),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            controller.signOut();
+          },
+          color: Colors.black,
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xFFFFFFFF),
+      ),
       body: SingleChildScrollView(
           child: Padding(
         padding: EdgeInsets.all(16),
@@ -310,5 +328,5 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
             ),
           ],
         ),
-      )));
+      )));});
 }
