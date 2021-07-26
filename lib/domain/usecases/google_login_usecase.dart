@@ -12,9 +12,11 @@ class GoogleLoginUseCase extends UseCase<UserCredential,GoogleLoginUseCaseParams
   @override
   Future<Stream<UserCredential>> buildUseCaseStream(GoogleLoginUseCaseParams params) async {
     final StreamController<UserCredential> controller = StreamController();
+    //final StreamController<bool> controller = StreamController();
     try {
       //서버 응답 결과
       UserCredential signUpResult = await _userRepository.signInWithGoogle();
+      //bool signUpResult = await _userRepository.loginGoogleUser();
       //결과를 controller 에 넣어줌
       controller.add(signUpResult);
       logger.finest('SignUp successful.');

@@ -11,7 +11,7 @@ class EmailPasswordLoginUseCase extends UseCase<bool, LoginUseCaseParams> {
     final StreamController<bool> controller = StreamController();
     try {
       //서버 응답 결과
-      bool signUpResult = await _userRepository.signInWithEmailAndPassword(
+      bool signUpResult = await _userRepository.loginUser(
           params._email, params._password);
 
       //결과를 controller에 넣어줌
