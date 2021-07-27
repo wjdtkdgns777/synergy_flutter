@@ -1,7 +1,7 @@
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class CommunityPresenter extends Presenter {
-  //CommunityUseCase _connunityUseCase;
+
   Function communityNext;
   Function communityComplete;
   Function communityError;

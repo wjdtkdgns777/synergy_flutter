@@ -73,23 +73,23 @@ class _CommunityState extends ViewState<Community, CommunityController> {
       return Column(
         children: <Widget>[
           Divider(thickness: 1, color: Colors.grey[300]),
-          _Board("자유게시판", "Free Board", 0, controller),
+          _Board("자유게시판", "Free Board", 0, controller, context),
           Divider(thickness: 1,color: Colors.grey[300],),
-          _Board("게시판1", "Board1", 1, controller),
+          _Board("게시판1", "Board1", 1, controller, context),
           Divider(thickness: 1,color: Colors.grey[300],),
-          _Board("게시판2", "Board2", 2, controller),
+          _Board("게시판2", "Board2", 2, controller, context),
           Divider(thickness: 1,color: Colors.grey[300],),
-          _Board("게시판3", "Board3", 3, controller),
+          _Board("게시판3", "Board3", 3, controller, context),
           Divider(thickness: 1,color: Colors.grey[300],),
 
         ]
       );
     });
 
-  Widget _Board(String korTitle, String engTitle, int boardOption, CommunityController controller){
+  Widget _Board(String korTitle, String engTitle, int boardOption, CommunityController controller, BuildContext context){
     return InkWell(
         onTap: (){
-          controller.onBoardClicked(boardOption);
+          controller.onBoardClicked(boardOption, context);
         },
         child: Container(
             width: MediaQuery.of(context).size.width,
