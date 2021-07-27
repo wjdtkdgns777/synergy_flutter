@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:synergy_flutter/domain/repositories/users_repository.dart';
 import 'package:synergy_flutter/domain/usecases/email_password_login_usecase.dart';
-import 'package:synergy_flutter/domain/usecases/facebook_login_usecase.dart';
 import 'package:synergy_flutter/domain/usecases/google_login_usecase.dart';
-import 'package:synergy_flutter/domain/usecases/sign_up_usecase.dart';
 
 //네트워크 연결
 class LoginPresenter extends Presenter {
@@ -21,7 +18,7 @@ class LoginPresenter extends Presenter {
 
   LoginPresenter(_usersRepository) {
     _emailPasswordLoginUseCase = EmailPasswordLoginUseCase(_usersRepository);
-    _googleLoginUseCase=GoogleLoginUseCase(_usersRepository);
+    _googleLoginUseCase = GoogleLoginUseCase(_usersRepository);
   }
 
   //서버와 직접적인 통신

@@ -6,11 +6,8 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:synergy_flutter/app/pages/bottom_tab/bottomTab_view.dart';
 
 import 'package:synergy_flutter/app/pages/login/login_presenter.dart';
-import 'package:synergy_flutter/app/pages/login/login_view.dart';
 import 'package:synergy_flutter/app/pages/sign_up/sign_up_view.dart';
-import 'package:synergy_flutter/data/repositories/data_users_repository.dart';
 
-//함수
 class LoginController extends Controller {
   LoginPresenter _loginPresenter;
   final TextEditingController emailController = TextEditingController();
@@ -41,11 +38,11 @@ class LoginController extends Controller {
     };
 
     _loginPresenter.googleNext = (UserCredential result) {
-      if (result.user!=null) {
+      if (result.user != null) {
         Navigator.pushAndRemoveUntil(
             getContext(),
             MaterialPageRoute(builder: (context) => BottomTab()),
-                (route) => false);
+            (route) => false);
       } else
         print("Login Fail");
     };
@@ -59,9 +56,7 @@ class LoginController extends Controller {
       log(e);
       refreshUI(); // Refreshes the UI manually
     };
-
   }
-
 
   void onClickGoogleLogin() async {
     _loginPresenter.googleLogin();
@@ -71,13 +66,10 @@ class LoginController extends Controller {
   //   _loginPresenter.facebookLogin();
   // }
 
-
   void onClickLogin() {
-    // _loginPresenter.login(_emailTextController.text, _passTextController.text);
     _loginPresenter.emailPasswordLogin(
         emailController.text, passwordController.text);
   }
-
 
   void onClickSignUp() {
     Navigator.push(
@@ -89,8 +81,6 @@ class LoginController extends Controller {
     // don't forget to dispose of the presenter
     _loginPresenter.dispose();
 
-    // _emailTextController.dispose();
-    // _passTextController.dispose();
     emailController.dispose();
     passwordController.dispose();
     super.onDisposed();
