@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'dart:developer';
+import 'package:synergy_flutter/app/pages/community/addpost/addpost_view.dart';
 
-class PostController extends Controller{
+class AddPostController extends Controller{
 
-  PostController();
+  AddPostController();
 
   @override
   void initListeners() {

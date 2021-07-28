@@ -6,6 +6,7 @@ class PostModel {
   String ownerId;
   String username;
   String location;
+  String title;
   String description;
   String mediaUrl;
   // dynamic likesCount;
@@ -18,6 +19,7 @@ class PostModel {
     this.postId,
     this.ownerId,
     this.location,
+    this.title,
     this.description,
     this.mediaUrl,
     // this.likesCount,
@@ -31,6 +33,7 @@ class PostModel {
     ownerId = json['ownerId'];
     location = json['location'];
     username= json['username'];
+    title = json['title'];
     description = json['description'];
     mediaUrl = json['mediaUrl'];
     // likesCount = json['likes'].length ?? 0;
@@ -44,6 +47,7 @@ class PostModel {
     data['postId'] = this.postId;
     data['ownerId'] = this.ownerId;
     data['location'] = this.location;
+    data['title'] = this.title;
     data['description'] = this.description;
     data['mediaUrl'] = this.mediaUrl;
     // data['likesCount']= this.likesCount;

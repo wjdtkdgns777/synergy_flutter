@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'post_controller.dart';
+import 'addpost_controller.dart';
 
-class PostView extends View {
+class AddPostView extends View {
   @override
-  _PostViewState createState() => _PostViewState(PostController());
+  _AddPostViewState createState() => _AddPostViewState(AddPostController());
 }
 
-class _PostViewState extends ViewState<PostView, PostController> {
-  _PostViewState(PostController controller) : super(controller);
+class _AddPostViewState extends ViewState<AddPostView, AddPostController> {
+  _AddPostViewState(AddPostController controller) : super(controller);
 
   @override
   Widget get view => Scaffold(
@@ -27,7 +27,7 @@ class _PostViewState extends ViewState<PostView, PostController> {
                   color: Color(0xfff0f0f0),
                 ),
                 child: Text(
-                  "Board Page",
+                  "Add post page",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
