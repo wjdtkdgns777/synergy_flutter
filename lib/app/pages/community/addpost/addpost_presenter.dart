@@ -8,7 +8,9 @@ class AddPostPresenter extends Presenter {
 
   AddPostPresenter();
 
-
+  void submitPost(String title, String content){
+    //_submitPostUseCase = SubmitUseCase(String title, String content);
+  }
 
   void dispose() {
   }

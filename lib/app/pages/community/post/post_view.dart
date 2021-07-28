@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'post_controller.dart';
+import 'package:synergy_flutter/domain/entities/post.dart';
 
 class PostView extends View {
   @override

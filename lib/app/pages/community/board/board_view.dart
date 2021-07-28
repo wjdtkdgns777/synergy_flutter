@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'board_controller.dart';
 import 'dart:developer';
 import 'package:synergy_flutter/domain/entities/post.dart';
 import 'package:synergy_flutter/app/pages/community/addpost/addpost_view.dart';
+
 
 class BoardView extends View {
   @override
@@ -68,28 +68,37 @@ class _BoardViewState extends ViewState<BoardView, BoardController> {
                     Text("Error Occurred : ${snapshot.hasError.toString()}");
                   }else if(snapshot.data != null){
                     controller.isLoading = false;
-                    return ListView.separated(
-                      itemCount: controller.posts == null? 0 : controller.posts.length,
-                      controller: controller.scrollController,
-                      physics: AlwaysScrollableScrollPhysics(),
-                      itemBuilder: (context, index){
-                        return Column(
-                          children: <Widget>[
-                            ListTile(
-                              title: Text('$index ${controller.posts[index]['title']}'),
-                            ),
-                            Container(
-                              color: Colors.black,
-                              height: (index == controller.posts.length-1 && controller.totalRecord > controller.posts.length) ? 50 : 0,
-                              width: MediaQuery.of(context).size.width,
-                              child:Center(
-                                  child: CircularProgressIndicator()
+                    controller.pageNum++;
+
+                    return Scrollbar(
+                      child: ListView.separated(
+                        itemCount: controller.posts == null? 0 : controller.posts.length,
+                        controller: controller.scrollController,
+                        physics: AlwaysScrollableScrollPhysics(),
+                        itemBuilder: (context, index){
+                          return Column(
+                            children: <Widget>[
+                              ListTile(
+                                title: Text('$index ${controller.posts[index]['title']}'),
                               ),
-                            ),
-                          ],
-                        );
-                      },
+                              Container(
+                                color: Colors.black,
+                                height: (index == controller.posts.length-1 && controller.totalRecord > controller.posts.length) ? 50 : 0,
+                                width: MediaQuery.of(context).size.width,
+                                child:Center(
+                                    child: CircularProgressIndicator()
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                     );
+
+                  }else{
+                    log("Data 없음");
+
+                    return Center(child: Text("No data"),);
                   }
               }
             }
