@@ -48,6 +48,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   motion_tab_bar: ^0.1.5
   provider: ^5.0.0
+  get: ^4.3.0
 
 
 
