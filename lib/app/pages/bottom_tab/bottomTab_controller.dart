@@ -17,7 +17,7 @@ class BottomTabController extends Controller {
   final List<Widget> children = [
     HomePage(),
     Announcement(),
-    Community(),
+    // Community(),
     ProfilePage()
   ];
 

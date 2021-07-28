@@ -1,17 +1,13 @@
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class CommunityPresenter extends Presenter {
-
   Function communityNext;
   Function communityComplete;
   Function communityError;
 
-  CommunityPresenter();
+  CommunityPresenter(dataUserRepository);
 
-
-
-  void dispose() {
-  }
+  void dispose() {}
 }
 
 class _CommunityObserver implements Observer<bool> {
@@ -19,12 +15,9 @@ class _CommunityObserver implements Observer<bool> {
 
   _CommunityObserver(this._communityPresenter);
 
-  void onNext(result) {
-  }
+  void onNext(result) {}
 
-  void onComplete() {
-  }
+  void onComplete() {}
 
-  void onError(e) {
-  }
+  void onError(e) {}
 }

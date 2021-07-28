@@ -22,7 +22,7 @@ class EmptyContent extends StatelessWidget {
             style: TextStyle(fontSize: 32.0, color: Colors.black54),
           ),
           Text(
-            title,
+            message,
             style: TextStyle(fontSize: 16.0, color: Colors.black54),
           )
         ],

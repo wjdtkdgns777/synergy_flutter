@@ -1,8 +1,6 @@
 //if you're likely to create multiple implements for those classes ->
 //you can consider creating abstract based class
-import 'package:flutter/cupertino.dart';
 import 'package:synergy_flutter/data/models/post.dart';
-
 import 'api_path.dart';
 import 'firestore_service.dart';
 
@@ -32,19 +30,20 @@ class FirestoreDatabase implements Database {
   @override
   Future<void> setPost(Post post) => _service.setData(
         //현재 시각을 path 로 설정하여 항상 고유한 경로에 Job을 생성
-        path: APIPath.post(uid, post.id),
+        path: APIPath.post(uid, post.postId),
         data: post.toMap(),
       );
 
   @override
   Future<void> deletePost(Post post) => _service.deleteData(
-        path: APIPath.post(uid, post.id),
+        path: APIPath.post(uid, post.postId),
       );
 
   //for read
   @override
   Stream<List<Post>> postsStream() => _service.collectionStream(
         path: APIPath.posts(uid),
+        // builder: (data, documentId) => Post.fromMap(data, documentId, uid),
         builder: (data, documentId) => Post.fromMap(data, documentId),
       );
 }

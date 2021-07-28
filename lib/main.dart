@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:synergy_flutter/app/pages/bottom_tab/bottomTab_view.dart';
 import 'package:synergy_flutter/app/pages/home/home_view.dart';
+import 'app/pages/community/community_view.dart';
 import 'app/pages/welcome/welcome_view.dart';
+import 'data/utils/database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,8 +28,14 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+          final User user = snapshot.data; //explicit type
           if (snapshot.hasData) {
-            return BottomTab();
+            // return BottomTab();
+            return Provider<Database>(
+              create: (_) => FirestoreDatabase(uid: user.uid),
+              // child: Community(),
+              child: CommunityView(),
+            );
           } else
             return WelcomePage();
         },
