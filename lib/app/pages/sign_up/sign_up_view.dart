@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:synergy_flutter/app/components/bezierContainer.dart';
 import 'package:synergy_flutter/app/pages/login/login_view.dart';
 import 'package:synergy_flutter/app/pages/sign_up/sign_up_controller.dart';
@@ -18,7 +17,7 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
 
   @override
   Widget get view => Scaffold(
-    key: globalKey,
+        key: globalKey,
         body: Container(
           height: MediaQuery.of(context).size.height,
           child: Stack(
@@ -79,7 +78,6 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
           ),
         );
       });
-
 
   Widget get _submitButton =>
       ControlledWidgetBuilder<SignUpController>(builder: (context, controller) {
@@ -159,7 +157,6 @@ class _SignUpPageState extends ViewState<SignUpPage, SignUpController> {
           ),
         );
       });
-
 
   Widget get _signUpWidget =>
       ControlledWidgetBuilder<SignUpController>(builder: (context, controller) {
