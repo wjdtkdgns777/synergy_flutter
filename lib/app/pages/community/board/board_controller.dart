@@ -6,6 +6,8 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:synergy_flutter/app/pages/community/board/board_view.dart';
 import 'package:synergy_flutter/app/pages/community/board/board_presenter.dart';
+import 'package:synergy_flutter/data/models/post.dart';
+import 'package:synergy_flutter/app/pages/community/post/post_view.dart';
 
 class BoardController extends Controller{
   BoardPresenter _boardPresenter;
@@ -15,12 +17,12 @@ class BoardController extends Controller{
   bool isLoading = false;
   DocumentSnapshot lastDocument;
   int pageNum = 1;
-  List<Map<String, dynamic>> posts;
-  Future<List<Map<String, dynamic>>> future;
+  List<Post> posts;
+  Future<List<Post>> future;
   int totalRecord = 0;
 
-  BoardController()
-    : _boardPresenter = BoardPresenter();
+  BoardController(dataUserRepository)
+    : _boardPresenter = BoardPresenter(dataUserRepository);
 
   @override
   void initListeners() {
@@ -29,22 +31,10 @@ class BoardController extends Controller{
 
   }
 
-  Future<List<Map<String, dynamic>>> getPosts() async{
+  Future<List<Post>> getPosts() async{
 
     isLoading = true;
-    /*final res = await _boardPresenter.getPosts();
-    Map<String, dynamic> dicRes = json.decode(res.body);
-    List<Map<String, dynamic>> tempArray = List<Map<String, dynamic>>.from(dicRes["data"]["products"]);
-    setState((){
-      if(pageNum == 1){
-        totalRecord = dicRes["total_record"];
-        posts = tempArray;
-
-      }else{
-        posts.addAll(tempArray);
-      }
-      pageNum++;
-    });*/
+    posts = _boardPresenter.getPosts();
     return posts;
   }
 
@@ -55,6 +45,18 @@ class BoardController extends Controller{
     if(scrollController.position.extentAfter >= 0 && isLoading == false){
       getPosts();
     }
+  }
+
+  onPostSelected(BuildContext context, Post post){
+    //Post 클릭
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PostView(post))
+    );
+  }
+
+  onDeletePost(BuildContext context, Post post){
+    _boardPresenter.deletePost(post);
   }
 
   @override

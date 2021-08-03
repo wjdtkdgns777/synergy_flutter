@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:synergy_flutter/data/repositories/data_users_repository.dart';
 import 'addpost_controller.dart';
 import 'package:synergy_flutter/domain/entities/post.dart';
 
 class AddPostView extends View {
   @override
-  _AddPostViewState createState() => _AddPostViewState(AddPostController());
+  _AddPostViewState createState() => _AddPostViewState(AddPostController(DataUsersRepository()));
 }
 
 class _AddPostViewState extends ViewState<AddPostView, AddPostController> {
@@ -65,6 +66,7 @@ Widget get _titleBox =>
           fillColor: Colors.white,
         ),
         cursorHeight: 20.0,
+        controller: controller.titleController,
       );
     });
 
@@ -81,6 +83,8 @@ Widget get _contentBox =>
             filled: true,
             fillColor: Colors.white,
           ),
+          validator: (value) => value.isNotEmpty ? null : 'Title can\'t be empty',
+          controller: controller.contentController,
         ),
       );
     });
@@ -110,8 +114,11 @@ Widget get _fileButton =>
 Widget get _attachedFile =>
     ControlledWidgetBuilder<AddPostController>(builder: (context, controller){
       return Container(
-        child: Text(controller.selectedFileList,
-        ),
+        child:Align(
+          alignment: Alignment.centerLeft,
+          child: Text(controller.selectedFileList,
+          ),
+        )
       );
     });
 

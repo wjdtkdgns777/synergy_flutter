@@ -1,8 +1,11 @@
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:synergy_flutter/data/utils/database.dart';
 import 'package:synergy_flutter/data/utils/firebase.dart';
 import '../../domain/repositories/users_repository.dart';
+import 'package:synergy_flutter/data/models/post.dart';
 
 class DataUsersRepository extends UsersRepository {
   List<User> users;
@@ -90,6 +93,28 @@ class DataUsersRepository extends UsersRepository {
 
     await FirebaseAuth.instance.signOut();
   }
+
+  @override
+  Future<bool> submitPost(String title, String contents, List<File> files) {
+    final uid = firebaseAuth.currentUser.uid;
+    //final post = Post(postId : documentIdFromCurrentDate(), uid: uid, title: title, content: contents);
+    //cloud Firestore에 추가해주는 작업
+
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> deletePost(Post post) {
+    // post 삭제
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Post>> getPosts() {
+    // post들 List형태로 가져옴
+    throw UnimplementedError();
+  }
+
 
 
 

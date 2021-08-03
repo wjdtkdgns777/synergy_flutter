@@ -2,15 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:synergy_flutter/data/repositories/data_users_repository.dart';
 import 'board_controller.dart';
 import 'dart:developer';
 import 'package:synergy_flutter/domain/entities/post.dart';
 import 'package:synergy_flutter/app/pages/community/addpost/addpost_view.dart';
+import 'package:synergy_flutter/data/models/post.dart';
+import 'package:synergy_flutter/app/components/list_items_builder.dart';
+import 'dart:ui';
+import 'package:synergy_flutter/app/components/post_list_tile.dart';
+
 
 
 class BoardView extends View {
   @override
-  _BoardViewState createState() => _BoardViewState(BoardController());
+  _BoardViewState createState() => _BoardViewState(BoardController(DataUsersRepository()));
 }
 
 class _BoardViewState extends ViewState<BoardView, BoardController> {
@@ -55,56 +61,28 @@ class _BoardViewState extends ViewState<BoardView, BoardController> {
   Widget get _postList =>
       ControlledWidgetBuilder<BoardController>(builder: (context, controller){
         return Container(
-          child: FutureBuilder<List<Map<String, dynamic>>>(
-            future: controller.future,
-            builder: (BuildContext context, AsyncSnapshot snapshot){
-              switch(snapshot.connectionState){
-                case ConnectionState.none:
-                case ConnectionState.active:
-                case ConnectionState.waiting:
-                  return Center(child: CircularProgressIndicator(),);
-                case ConnectionState.done:
-                  if(snapshot.hasError){
-                    Text("Error Occurred : ${snapshot.hasError.toString()}");
-                  }else if(snapshot.data != null){
-                    controller.isLoading = false;
-                    controller.pageNum++;
+          child: StreamBuilder<List<Post>>(
+            builder: (context, snapshot){
+              return ListItemsBuilder<Post>(
+                itemBuilder:(context, post) => Dismissible(
+                    key:Key('post-${post.title}'),
+                    background: Container(
+                      color: Colors.grey[700],
+                    ),
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (direction) => controller.onDeletePost(context, post),
+                    child: PostListTile(
+                        post: post,
+                        onTap: () => controller.onPostSelected(context, post)
+                    )
+                ),
 
-                    return Scrollbar(
-                      child: ListView.separated(
-                        itemCount: controller.posts == null? 0 : controller.posts.length,
-                        controller: controller.scrollController,
-                        physics: AlwaysScrollableScrollPhysics(),
-                        itemBuilder: (context, index){
-                          return Column(
-                            children: <Widget>[
-                              ListTile(
-                                title: Text('$index ${controller.posts[index]['title']}'),
-                              ),
-                              Container(
-                                color: Colors.black,
-                                height: (index == controller.posts.length-1 && controller.totalRecord > controller.posts.length) ? 50 : 0,
-                                width: MediaQuery.of(context).size.width,
-                                child:Center(
-                                    child: CircularProgressIndicator()
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    );
-
-                  }else{
-                    log("Data 없음");
-
-                    return Center(child: Text("No data"),);
-                  }
-              }
+              );
             }
           ),
-        );
 
+
+        );
       });
 
 

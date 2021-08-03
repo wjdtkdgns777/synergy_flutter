@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:synergy_flutter/data/models/post.dart';
+import 'dart:io';
 import '../entities/user.dart';
 import '../entities/loginResult.dart';
 
@@ -18,4 +19,10 @@ abstract class UsersRepository {
   Future<User> signInWithFacebook();
 
   Future<void> signOut();
+
+  Future<bool> submitPost(String title, String contents, List<File> files);
+
+  Future<List<Post>> getPosts();
+
+  Future<bool> deletePost(Post post);
 }
