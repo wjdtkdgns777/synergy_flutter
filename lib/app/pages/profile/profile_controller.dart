@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:get/get.dart';
 import 'package:synergy_flutter/app/pages/profile/profile_edit/profile_edit_view.dart';
 import 'package:synergy_flutter/app/pages/profile/profile_presenter.dart';
 import 'package:synergy_flutter/app/pages/welcome/welcome_view.dart';
+import 'package:synergy_flutter/data/utils/firebase.dart';
 
 class ProfileController extends Controller {
   ProfilePresenter _profilePresenter;
@@ -15,8 +17,8 @@ class ProfileController extends Controller {
   void initListeners() {}
 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  FirebaseFirestore fireStore=FirebaseFirestore.instance;
-  String myWord;
+  FirebaseFirestore fireStore = FirebaseFirestore.instance;
+  String myWord='';
 
   void signOut() {
     FirebaseAuth.instance.signOut();
@@ -31,21 +33,24 @@ class ProfileController extends Controller {
         MaterialPageRoute(builder: (context) => ProfileEditPage()));
   }
 
-  @override
-  void onInitState() {
-    // fireStore
-    //     .collection('users')
-    //     .doc(firebaseAuth.currentUser.uid)
-    //     .get()
-    //     .then((DocumentSnapshot documentSnapshot) {
-    //   if (documentSnapshot.exists) {
-    //     print('Document exists on the database');
-    //   }
-    // });
-    super.onInitState();
+  String getMyWord() {
+    fireStore
+        .collection('users')
+        .doc(firebaseAuth.currentUser.uid)
+        .get()
+        .then((DocumentSnapshot ds) {
+      myWord = ds['MyWord'];
+    }).catchError((onError) => print(onError));
+
+    return myWord;
+
   }
 
-
+  @override
+  void onInitState() {
+    getMyWord();
+    super.onInitState();
+  }
 
   @override
   void onDisposed() {

@@ -43,6 +43,7 @@ class _ProfilePageView extends ViewState<ProfilePage, ProfileController> {
         IconButton(
           icon: const Icon(Icons.edit),
           onPressed: () {
+
             controller.editProfile();
           },
           color: Colors.white,
@@ -100,7 +101,7 @@ class _ProfilePageView extends ViewState<ProfilePage, ProfileController> {
             ),
             SizedBox(height: 16),
             Text(
-              "언제나 발전하는 플러터 개발자",
+              controller.getMyWord(),
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,

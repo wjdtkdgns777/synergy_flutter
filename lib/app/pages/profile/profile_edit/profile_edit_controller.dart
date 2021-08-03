@@ -11,6 +11,7 @@ import 'package:synergy_flutter/app/pages/example/example_presenter.dart';
 import 'package:synergy_flutter/app/pages/profile/profile_edit/profile_edit_presenter.dart';
 import 'package:synergy_flutter/app/pages/profile/profile_presenter.dart';
 import 'package:synergy_flutter/app/pages/welcome/welcome_view.dart';
+import 'package:synergy_flutter/data/utils/firebase.dart';
 
 class ProfileEditController extends Controller {
   ProfileEditPresenter _profileEditPresenter;
@@ -40,6 +41,8 @@ class ProfileEditController extends Controller {
     "MyWord":"언제나 발전하는 플러터 개발자"
    });
   }
+
+
 
 
   void uploadImageToStorage(ImageSource source) async {

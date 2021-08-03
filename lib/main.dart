@@ -10,7 +10,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(GetMaterialApp(home:MyApp()));
+  // runApp(GetMaterialApp(home:MyApp()));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
