@@ -28,6 +28,8 @@ class Post {
   //ID를 넣어주면 ID도 key value 의 형태로 들어감
   Map<String, dynamic> toMap() {
     return {
+      'postId': postId,
+      'uid': uid,
       'title': title,
       'content': content,
     };

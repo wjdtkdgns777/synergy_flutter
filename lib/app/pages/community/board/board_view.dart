@@ -104,37 +104,36 @@ import 'package:synergy_flutter/data/utils/database.dart';
 //     );
 //   }
 // }
-
+//
 // @override
 // Widget get view => Scaffold(
 //     key: globalKey,
 //     body: SingleChildScrollView(
-//         child: Padding(
-//           padding: EdgeInsets.all(16),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Container(
-//                 height: 230,
-//                 width: MediaQuery.of(context).size.width,
-//                 decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.circular(8),
-//                   color: Color(0xfff0f0f0),
-//                 ),
-//                 child: Text(
-//                   "Board Page",
-//                   style: TextStyle(
-//                     color: Colors.black,
-//                     fontSize: 16,
-//                   ),
+//       child: Padding(
+//         padding: EdgeInsets.all(16),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Container(
+//               height: 230,
+//               width: MediaQuery.of(context).size.width,
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(8),
+//                 color: Color(0xfff0f0f0),
+//               ),
+//               child: Text(
+//                 "Board Page",
+//                 style: TextStyle(
+//                   color: Colors.black,
+//                   fontSize: 16,
 //                 ),
 //               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     ));
 //
-//                   ],
-//                 ),
-//               ),
-//         ));
-
 // class BoardView extends StatelessWidget {
 //   Future<void> _signOut(BuildContext context) async {
 //     try {
@@ -276,10 +275,10 @@ class _BoardViewState extends State<BoardView> {
       try {
         //enforce unique job name
         //get the first(most up-to-date) value on the stream
-        final jobs = await widget.database.postsStream().first;
+        final posts = await widget.database.postsStream().first;
         //don't forget to add toList();
-        print(jobs);
-        final allNames = jobs.map((job) => job.title).toList();
+        print(posts);
+        final allNames = posts.map((job) => job.title).toList();
         //need when editing
         if (widget.post != null) {
           allNames.remove(widget.post.title);
@@ -359,15 +358,14 @@ class _BoardViewState extends State<BoardView> {
       TextFormField(
         decoration: InputDecoration(labelText: '제목'),
         initialValue: _title,
-        validator: (value) => value.isNotEmpty ? null : 'Title can\'t be empty',
+        validator: (value) => value.isNotEmpty ? null : '제목을 입력하세요',
         onSaved: (value) => _title = value,
       ),
       TextFormField(
         decoration: InputDecoration(labelText: '내용'),
         //initialValue: _content != null ? '$_content' : null,
         initialValue: _content,
-        validator: (value) =>
-            value.isNotEmpty ? null : 'Content can\'t be empty',
+        validator: (value) => value.isNotEmpty ? null : '내용을 입력하세요',
         onSaved: (value) => _content = value,
       ),
     ];

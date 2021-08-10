@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
               create: (_) => FirestoreDatabase(uid: user.uid),
               // child: Community(),
               child: CommunityView(),
+              // child: BottomTab(),
             );
           } else
             return WelcomePage();
