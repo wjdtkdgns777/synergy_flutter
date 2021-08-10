@@ -12,11 +12,10 @@ import 'package:synergy_flutter/app/components/list_items_builder.dart';
 import 'dart:ui';
 import 'package:synergy_flutter/app/components/post_list_tile.dart';
 
-
-
 class BoardView extends View {
   @override
-  _BoardViewState createState() => _BoardViewState(BoardController(DataUsersRepository()));
+  _BoardViewState createState() =>
+      _BoardViewState(BoardController(DataUsersRepository()));
 }
 
 class _BoardViewState extends ViewState<BoardView, BoardController> {
@@ -26,25 +25,23 @@ class _BoardViewState extends ViewState<BoardView, BoardController> {
   Widget get view => Scaffold(
       key: globalKey,
       appBar: AppBar(
-      title: Text(
-      'Board',
-      style: TextStyle(color: Colors.black),
-      ),
-      actions: [
-        IconButton(
-          icon : Icon(Icons.add),
-          onPressed: (){
-            Navigator.push(
-              context,
-                MaterialPageRoute(builder: (context) => AddPostView())
-            );
-          },
+        title: Text(
+          'Board',
+          style: TextStyle(color: Colors.black),
         ),
-      ],
-      backgroundColor: Colors.white,
-      iconTheme: IconThemeData(color: Colors.black),),
-      body: _postList
-  );
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => AddPostView()));
+            },
+          ),
+        ],
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
+      body: _postList);
 
   internetChecker() async {
     bool result = await InternetConnectionChecker().hasConnection;
@@ -59,31 +56,24 @@ class _BoardViewState extends ViewState<BoardView, BoardController> {
   }
 
   Widget get _postList =>
-      ControlledWidgetBuilder<BoardController>(builder: (context, controller){
+      ControlledWidgetBuilder<BoardController>(builder: (context, controller) {
         return Container(
-          child: StreamBuilder<List<Post>>(
-            builder: (context, snapshot){
-              return ListItemsBuilder<Post>(
-                itemBuilder:(context, post) => Dismissible(
-                    key:Key('post-${post.title}'),
-                    background: Container(
-                      color: Colors.grey[700],
-                    ),
-                    direction: DismissDirection.endToStart,
-                    onDismissed: (direction) => controller.onDeletePost(context, post),
-                    child: PostListTile(
-                        post: post,
-                        onTap: () => controller.onPostSelected(context, post)
-                    )
-                ),
-
-              );
-            }
-          ),
-
-
+          child: StreamBuilder<List<Post>>(builder: (context, snapshot) {
+            return ListItemsBuilder<Post>(
+              snapshot: snapshot,
+              itemBuilder: (context, post) => Dismissible(
+                  key: Key('post-${post.title}'),
+                  background: Container(
+                    color: Colors.grey[700],
+                  ),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) =>
+                      controller.onDeletePost(context, post),
+                  child: PostListTile(
+                      post: post,
+                      onTap: () => controller.onPostSelected(context, post))),
+            );
+          }),
         );
       });
-
-
 }
