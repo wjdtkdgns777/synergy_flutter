@@ -8,9 +8,8 @@ import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:dio/dio.dart';
 import 'dart:io';
-import 'package:synergy_flutter/data/models/post.dart';
 
-class AddPostController extends Controller{
+class AddPostController extends Controller {
   AddPostPresenter _addPostPresenter;
 
   String selectedFileList = "";
@@ -19,20 +18,19 @@ class AddPostController extends Controller{
   final TextEditingController contentController = TextEditingController();
 
   AddPostController(dataUserRepository)
-    : _addPostPresenter = AddPostPresenter(dataUserRepository);
+      : _addPostPresenter = AddPostPresenter(dataUserRepository);
 
   @override
-  void initListeners() {
+  void initListeners() {}
 
-  }
-
-  selectFile() async{
+  selectFile() async {
     /*selectedFile = await FilePicker.getFile(
       type: FileType.custom,
       allowedExtensions: ['jpg', 'pdf', 'mp4']
     );*/
-    FilePickerResult result = await FilePicker.platform.pickFiles(allowMultiple: true);
-    if(result != null){
+    FilePickerResult result =
+        await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (result != null) {
       log(result.paths.length.toString());
       result.paths.forEach((element) {
         File file = File(element);
@@ -41,32 +39,29 @@ class AddPostController extends Controller{
         log(selectedFileList);
       });
       refreshUI();
-    }
-    else{
+    } else {
       //User canceled the picker
     }
-}
+  }
 
-  void onClickSubmit(){
-    if(titleController.text == ""){
+  void onClickSubmit(BuildContext context) {
+    if (titleController.text == "") {
       final failSnackBar = SnackBar(
         content: Text('제목을 입력하십시오.'),
       );
       ScaffoldMessenger.of(getContext()).showSnackBar(failSnackBar);
-    }
-    else if(contentController.text == ""){
+    } else if (contentController.text == "") {
       final failSnackBar = SnackBar(
         content: Text('내용을 입력하십시오.'),
       );
       ScaffoldMessenger.of(getContext()).showSnackBar(failSnackBar);
-    }else{
-      _addPostPresenter.submitPost(titleController.text, contentController.text, selectedFile);
+    } else {
+      _addPostPresenter.submitPost(
+          titleController.text, contentController.text, selectedFile, context);
       Navigator.pop(getContext());
     }
   }
 
   @override
-  void onDisposed() {
-
-  }
+  void onDisposed() {}
 }

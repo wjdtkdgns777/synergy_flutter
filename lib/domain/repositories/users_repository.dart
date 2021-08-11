@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:synergy_flutter/data/models/post.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:synergy_flutter/domain/entities/post.dart';
 import 'dart:io';
 import '../entities/user.dart';
 import '../entities/loginResult.dart';
@@ -20,9 +21,10 @@ abstract class UsersRepository {
 
   Future<void> signOut();
 
-  Future<bool> submitPost(String title, String contents, List<File> files);
+  Future<bool> submitPost(
+      String title, String contents, List<File> files, BuildContext context);
 
-  Future<List<Post>> getPosts();
+  Future<List<Post>> getPosts(BuildContext context);
 
-  Future<bool> deletePost(Post post);
+  Future<bool> deletePost(Post post, BuildContext context);
 }

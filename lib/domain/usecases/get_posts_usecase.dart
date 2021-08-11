@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:synergy_flutter/domain/entities/post.dart';
 import 'package:synergy_flutter/domain/repositories/users_repository.dart';
-import 'package:synergy_flutter/data/models/post.dart';
 
 
 class GetPostsUseCase extends UseCase<List<Post>, GetPostsUseCaseParams> {
@@ -16,10 +16,10 @@ class GetPostsUseCase extends UseCase<List<Post>, GetPostsUseCaseParams> {
 
     try {
       //서버 응답 결과
-      List<Post> getPostResult = await _userRepository.getPosts();
+      List<Post> getPostResult = await _userRepository.getPosts(params._context);
       //결과를 controller 에 넣어줌
       controller.add(getPostResult);
-      logger.finest('SignUp successful.');
+      logger.finest('getPosts successful.');
 
       controller.close();
     } catch (e) {
@@ -31,7 +31,8 @@ class GetPostsUseCase extends UseCase<List<Post>, GetPostsUseCaseParams> {
 }
 
 class GetPostsUseCaseParams {
+  BuildContext _context;
 
 
-  GetPostsUseCaseParams();
+  GetPostsUseCaseParams(this._context);
 }

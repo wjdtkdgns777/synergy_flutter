@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:provider/provider.dart';
 import 'package:synergy_flutter/data/repositories/data_users_repository.dart';
+import 'package:synergy_flutter/data/utils/database.dart';
+import 'package:synergy_flutter/data/utils/firebase.dart';
 import 'board_controller.dart';
 import 'dart:developer';
 import 'package:synergy_flutter/domain/entities/post.dart';
 import 'package:synergy_flutter/app/pages/community/addpost/addpost_view.dart';
-import 'package:synergy_flutter/data/models/post.dart';
 import 'package:synergy_flutter/app/components/list_items_builder.dart';
 import 'dart:ui';
 import 'package:synergy_flutter/app/components/post_list_tile.dart';
@@ -57,23 +60,28 @@ class _BoardViewState extends ViewState<BoardView, BoardController> {
 
   Widget get _postList =>
       ControlledWidgetBuilder<BoardController>(builder: (context, controller) {
+        final uid = firebaseAuth.currentUser.uid;
+        final database = FirestoreDatabase(uid: uid);
         return Container(
-          child: StreamBuilder<List<Post>>(builder: (context, snapshot) {
-            return ListItemsBuilder<Post>(
-              snapshot: snapshot,
-              itemBuilder: (context, post) => Dismissible(
-                  key: Key('post-${post.title}'),
-                  background: Container(
-                    color: Colors.grey[700],
-                  ),
-                  direction: DismissDirection.endToStart,
-                  onDismissed: (direction) =>
-                      controller.onDeletePost(context, post),
-                  child: PostListTile(
-                      post: post,
-                      onTap: () => controller.onPostSelected(context, post))),
-            );
-          }),
+          child: StreamBuilder<List<Post>>(
+              stream: database.postsStream(),
+              builder: (context, snapshot) {
+                return ListItemsBuilder<Post>(
+                  snapshot: snapshot,
+                  itemBuilder: (context, post) => Dismissible(
+                      key: Key('post-${post.postId}'),
+                      background: Container(
+                        color: Colors.grey[700],
+                      ),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction) =>
+                          controller.onDeletePost(context, post),
+                      child: PostListTile(
+                          post: post,
+                          onTap: () =>
+                              controller.onPostSelected(context, post))),
+                );
+              }),
         );
       });
 }

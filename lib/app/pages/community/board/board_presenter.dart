@@ -1,6 +1,6 @@
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:synergy_flutter/data/repositories/data_users_repository.dart';
-import 'package:synergy_flutter/data/models/post.dart';
+import 'package:synergy_flutter/domain/entities/post.dart';
 import 'package:synergy_flutter/domain/usecases/get_posts_usecase.dart';
 import 'package:synergy_flutter/domain/usecases/delete_post_usecase.dart';
 

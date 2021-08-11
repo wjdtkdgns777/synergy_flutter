@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:synergy_flutter/domain/repositories/users_repository.dart';
 import 'dart:io';
 import 'dart:async';
@@ -15,7 +16,7 @@ class SubmitPostUseCase extends UseCase<bool, SubmitPostUseCaseParams> {
     try {
       //서버 응답 결과
       bool signUpResult = await _userRepository.submitPost(
-          params._title, params._contents, params._files);
+          params._title, params._contents, params._files, params._context);
 
       //결과를 controller에 넣어줌
       controller.add(signUpResult);
@@ -34,6 +35,7 @@ class SubmitPostUseCaseParams {
   String _title;
   String _contents;
   List<File> _files;
+  BuildContext _context;
 
-  SubmitPostUseCaseParams(this._title, this._contents, this._files);
+  SubmitPostUseCaseParams(this._title, this._contents, this._files, this._context);
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:synergy_flutter/data/models/post.dart';
+import 'package:synergy_flutter/domain/entities/post.dart';
 
 class PostListTile extends StatelessWidget {
   const PostListTile({Key key, @required this.post, this.onTap})
@@ -11,7 +11,7 @@ class PostListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(post.title),
+      title: Text(post.title ?? "빈 제목"),
       trailing: Icon(Icons.chevron_right),
       onTap: onTap,
     );

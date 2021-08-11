@@ -6,10 +6,10 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:synergy_flutter/app/pages/community/board/board_view.dart';
 import 'package:synergy_flutter/app/pages/community/board/board_presenter.dart';
-import 'package:synergy_flutter/data/models/post.dart';
 import 'package:synergy_flutter/app/pages/community/post/post_view.dart';
+import 'package:synergy_flutter/domain/entities/post.dart';
 
-class BoardController extends Controller{
+class BoardController extends Controller {
   BoardPresenter _boardPresenter;
 
   ScrollController scrollController;
@@ -22,45 +22,39 @@ class BoardController extends Controller{
   int totalRecord = 0;
 
   BoardController(dataUserRepository)
-    : _boardPresenter = BoardPresenter(dataUserRepository);
+      : _boardPresenter = BoardPresenter(dataUserRepository);
 
   @override
   void initListeners() {
     future = getPosts();
     scrollController = new ScrollController()..addListener(_scrollListener);
-
   }
 
-  Future<List<Post>> getPosts() async{
-
+  Future<List<Post>> getPosts() async {
     isLoading = true;
     posts = _boardPresenter.getPosts();
     return posts;
   }
 
-  _scrollListener(){
-    if(totalRecord == posts.length){
+  _scrollListener() {
+    if (totalRecord == posts.length) {
       return;
     }
-    if(scrollController.position.extentAfter >= 0 && isLoading == false){
+    if (scrollController.position.extentAfter >= 0 && isLoading == false) {
       getPosts();
     }
   }
 
-  onPostSelected(BuildContext context, Post post){
+  onPostSelected(BuildContext context, Post post) {
     //Post 클릭
     Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PostView(post))
-    );
+        context, MaterialPageRoute(builder: (context) => PostView(post)));
   }
 
-  onDeletePost(BuildContext context, Post post){
+  onDeletePost(BuildContext context, Post post) {
     _boardPresenter.deletePost(post);
   }
 
   @override
-  void onDisposed() {
-
-  }
+  void onDisposed() {}
 }

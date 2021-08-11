@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:synergy_flutter/domain/entities/post.dart';
 import 'package:synergy_flutter/domain/repositories/users_repository.dart';
-import 'package:synergy_flutter/data/models/post.dart';
 
 
 class DeletePostUseCase extends UseCase<bool,DeletePostUseCaseParams> {
@@ -16,7 +16,7 @@ class DeletePostUseCase extends UseCase<bool,DeletePostUseCaseParams> {
 
     try {
       //서버 응답 결과
-      bool signUpResult = await _userRepository.deletePost(params._post);
+      bool signUpResult = await _userRepository.deletePost(params._post, params._context);
       //결과를 controller 에 넣어줌
       controller.add(signUpResult);
       logger.finest('deletion successful.');
@@ -32,6 +32,7 @@ class DeletePostUseCase extends UseCase<bool,DeletePostUseCaseParams> {
 
 class DeletePostUseCaseParams {
   Post _post;
+  BuildContext _context;
 
-  DeletePostUseCaseParams(this._post);
+  DeletePostUseCaseParams(this._post, this._context);
 }
