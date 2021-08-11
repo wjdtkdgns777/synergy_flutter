@@ -63,9 +63,9 @@ import 'package:flutter/cupertino.dart';
 class Post {
   Post(
       {@required this.postId,
-        this.uid,
-        @required this.title,
-        @required this.content});
+      this.uid,
+      @required this.title,
+      @required this.content});
   final String postId;
   final String uid;
   final String title;
@@ -75,7 +75,7 @@ class Post {
     if (data == null) {
       return null;
     }
-    final String title = data['name'];
+    final String title = data['title'];
     final String content = data['content'];
     return Post(
       postId: documentId,

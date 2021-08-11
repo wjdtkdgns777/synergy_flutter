@@ -11,7 +11,7 @@ class PostListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(post.title ?? "빈 제목"),
+      title: Text(post.title ?? "제목 없음"),
       trailing: Icon(Icons.chevron_right),
       onTap: onTap,
     );
