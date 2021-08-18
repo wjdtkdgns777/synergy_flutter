@@ -1,14 +1,17 @@
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class PostPresenter extends Presenter {
+  //SubmitCommentUseCase _submitCommentUseCase;
 
   Function postNext;
   Function postComplete;
   Function postError;
 
-  PostPresenter();
+  PostPresenter(dataUserRepository);
 
-
+  void submitComment(String comment){
+    //_submitCommentUseCase.execute(_SubmitCommentObserver(this), SubmitCommentUseCaseParams(comment));
+  }
 
   void dispose() {
   }
